@@ -19,12 +19,15 @@ public class Interface {
         frame = new JFrame("AL2000");
         frame.setMinimumSize(new Dimension(INTERFACE_WIDTH, INTERFACE_HEIGHT));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        changePage(InterfacePage.MAIN);
         frame.setVisible(true);
 
         //Faire pop la fenetre au centre
     }
 
     public void changePage(InterfacePage newPage){
-
+        if(newPage == InterfacePage.MAIN){
+            frame.add(new MainPage());
+        }
     }
 }
