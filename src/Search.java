@@ -3,7 +3,7 @@
 
 public class Search {
 
-    TypeSearch keyword;
+    Enum TypeSearch keyword;
 
     String keyword;
 
