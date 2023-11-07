@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public abstract class Movie {
-    protected String name;
+    protected String title;
     protected String category;
     protected String summary;
     protected String director;
@@ -9,18 +9,12 @@ public abstract class Movie {
 
 
 
-
-
-
-
-
-
     public String getName() {
-        return name;
+        return title;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.title = name;
     }
 
     public String getCategory() {
