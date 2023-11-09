@@ -7,6 +7,8 @@ public class MainPage extends JPanel {
 
     HeaderBar headerBar;
     SearchBar searchBar;
+    FilmList frontPageFl;
+    FilmList avFilmListFl;
 
     public MainPage(){
 
@@ -26,7 +28,26 @@ public class MainPage extends JPanel {
         searchBar = new SearchBar();
         searchBar.setBackground(Color.yellow);
         searchBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-        centerPanel.add(searchBar, BorderLayout.CENTER);
+        centerPanel.add(searchBar);
+
+        JPanel frontPageFilmsPanel = createFrontPageFilmsPanel();
+        centerPanel.add(frontPageFilmsPanel);
+
+        /*JPanel availableFilmsPanel = createAvailableFilmsPanel();
+        centerPanel.add(availableFilmsPanel);*/
     }
 
+    JPanel createFrontPageFilmsPanel(){
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+
+        JLabel labelTitle = new JLabel("Films à la une");
+        p.add(labelTitle);
+
+        return p;
+    }
+
+    JPanel createAvailableFilmsPanel(){
+        return null;
+    }
 }
