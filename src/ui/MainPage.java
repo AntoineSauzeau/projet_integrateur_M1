@@ -3,12 +3,15 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
+
+//Page principale
+
 public class MainPage extends JPanel {
 
     HeaderBar headerBar;
     SearchBar searchBar;
-    FilmList frontPageFl;
-    FilmList avFilmListFl;
+    //Désactiver/activer des fonctionnalité dans la page selon type de client + ajuster prix location
+    Boolean Subscribed = false;
 
     public MainPage(){
 
