@@ -1,3 +1,5 @@
+package model;
+
 public class PhysicalMovie extends Movie{
 
     protected Boolean broken;

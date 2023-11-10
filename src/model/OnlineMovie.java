@@ -1,3 +1,5 @@
+package model;
+
 public class OnlineMovie extends Movie {
 
     private String qrCodeLink;
