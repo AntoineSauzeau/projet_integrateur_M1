@@ -2,6 +2,7 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class Interface {
 
@@ -12,7 +13,7 @@ public class Interface {
     InterfacePage page;
 
 
-    public Interface(){
+    public Interface() throws IOException {
 
         page = InterfacePage.MAIN;
 
@@ -25,7 +26,7 @@ public class Interface {
         //Faire pop la fenetre au centre
     }
 
-    public void changePage(InterfacePage newPage){
+    public void changePage(InterfacePage newPage) throws IOException {
         if(newPage == InterfacePage.MAIN){
             frame.add(new ConnectionPage());
         }

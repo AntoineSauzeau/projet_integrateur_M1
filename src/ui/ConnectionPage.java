@@ -1,11 +1,15 @@
 package ui;
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
 import static java.awt.event.MouseEvent.BUTTON1;
 
 
@@ -13,10 +17,12 @@ import static java.awt.event.MouseEvent.BUTTON1;
 public class ConnectionPage extends JPanel {
 
     //Faire deux boutons pour log subscriber et log non-subscriber
-    public ConnectionPage(){
-        this.setLayout(new BorderLayout());
+    public ConnectionPage() throws IOException {
+        this.setLayout(new FlowLayout());
         JButton buttonSub = new JButton("Log Sub");
-
+        buttonSub.setIcon(new ImageIcon(ImageIO.read(new File("assets/img/log-inIcon.png"))));
+        buttonSub.setHorizontalTextPosition(SwingConstants.CENTER);
+        buttonSub.setVerticalTextPosition(SwingConstants.BOTTOM);
         final JPanel self = this;
         buttonSub.addActionListener(new ActionListener() {
 
@@ -31,6 +37,9 @@ public class ConnectionPage extends JPanel {
         });
 
         JButton buttonNoSub = new JButton("Log Non-sub");
+        buttonNoSub.setIcon(new ImageIcon(ImageIO.read(new File("assets/img/log-inIcon.png"))));
+        buttonNoSub.setHorizontalTextPosition(SwingConstants.CENTER);
+        buttonNoSub.setVerticalTextPosition(SwingConstants.BOTTOM);
 
         buttonNoSub.addActionListener(new ActionListener() {
             @Override
@@ -43,8 +52,8 @@ public class ConnectionPage extends JPanel {
             }
         });
 
-        this.add(buttonSub, BorderLayout.CENTER);
-        this.add(buttonNoSub,BorderLayout.CENTER);
+        this.add(buttonSub);
+        this.add(buttonNoSub);
 
     }
 }
