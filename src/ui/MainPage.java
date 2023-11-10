@@ -93,4 +93,12 @@ public class MainPage extends JPanel {
         revalidate();
         repaint();
     }
+
+    void loadAccountPage(){
+        this.remove(centerPanel);
+        centerPanel = new AccountPage();
+        add(centerPanel, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
 }

@@ -44,7 +44,7 @@ public class HeaderBar extends JPanel {
         labelAccount.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Account icon clicked!");
+                parent.loadAccountPage();
                 //TODO décharger la page actuelle puis charger AccountPage
                 // seulement si connecté en sub
             }
