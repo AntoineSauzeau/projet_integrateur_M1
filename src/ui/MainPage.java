@@ -10,10 +10,15 @@ public class MainPage extends JPanel {
 
     HeaderBar headerBar;
     SearchBar searchBar;
+    JPanel centerPanel;
     //Désactiver/activer des fonctionnalité dans la page selon type de client + ajuster prix location
     Boolean Subscribed = false;
 
     public MainPage(int sub){
+
+        if(sub == 1){
+            Subscribed = true;
+        }
 
         setLayout(new BorderLayout());
         setBackground(Color.green);
@@ -23,7 +28,14 @@ public class MainPage extends JPanel {
         headerBar.setBackground(Color.red);
         add(headerBar, BorderLayout.PAGE_START);
 
-        JPanel centerPanel = new JPanel();
+        createCenterPanel();
+
+
+        
+    }
+
+    void createCenterPanel(){
+        centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setBackground(Color.blue);
         add(centerPanel, BorderLayout.CENTER);
@@ -33,9 +45,6 @@ public class MainPage extends JPanel {
         centerPanel.add(searchBar, BorderLayout.CENTER);
 
         centerPanel.add(new MoviePanel(), BorderLayout.CENTER);
-
-
-        
     }
 
     JPanel createFrontPageFilmsPanel(){
@@ -76,5 +85,10 @@ public class MainPage extends JPanel {
 
         JPanel availableFilmsPanel = createAvailableFilmsPanel();
         parent.add(availableFilmsPanel, c);
+    }
+
+    void loadDefaultMenu(){
+        centerPanel.removeAll();
+        createCenterPanel();
     }
 }
