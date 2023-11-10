@@ -3,8 +3,11 @@ package ui;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.io.File;
 import java.io.IOException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class HeaderBar extends JPanel {
 
@@ -15,13 +18,27 @@ public class HeaderBar extends JPanel {
     JLabel labelExit;
     JLabel labelAccount;
 
-    public HeaderBar(){
+    public HeaderBar(MainPage parent){
 
         loadIcons();
 
         labelHome = new JLabel(iconHome);
+        labelHome.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Home icon clicked!");
+                parent.loadDefaultMenu();
+            }
+        });
         labelHome.setPreferredSize(new Dimension(32, 32));
         labelExit = new JLabel(iconExit);
+        labelExit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Exit icon clicked!");
+                //TODO décharger la page actuelle puis charger ConnectionPage
+            }
+        });
         labelAccount = new JLabel(iconAccount);
 
         JPanel panelLeftIcons = new JPanel();
