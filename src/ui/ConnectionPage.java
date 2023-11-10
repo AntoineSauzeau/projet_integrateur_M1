@@ -10,7 +10,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-import static java.awt.event.MouseEvent.BUTTON1;
+// import static java.awt.event.MouseEvent.BUTTON1;
 
 
 //Page de connexion en attente de l'identification du client

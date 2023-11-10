@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class Interface {
 
-    static final int INTERFACE_WIDTH = 600;
-    static final int INTERFACE_HEIGHT = 600;
+    static final int INTERFACE_WIDTH = 800;
+    static final int INTERFACE_HEIGHT = 800;
 
     JFrame frame;
     InterfacePage page;
@@ -19,6 +19,7 @@ public class Interface {
 
         frame = new JFrame("AL2000");
         frame.setMinimumSize(new Dimension(INTERFACE_WIDTH, INTERFACE_HEIGHT));
+        // frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         changePage(InterfacePage.MAIN);
         frame.setVisible(true);
