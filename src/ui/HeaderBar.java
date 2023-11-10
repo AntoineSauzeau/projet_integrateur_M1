@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class HeaderBar extends JPanel {
@@ -28,6 +27,8 @@ public class HeaderBar extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 System.out.println("Home icon clicked!");
                 parent.loadDefaultMenu();
+                parent.revalidate();
+                parent.repaint();
             }
         });
         labelHome.setPreferredSize(new Dimension(32, 32));

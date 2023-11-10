@@ -42,7 +42,7 @@ public class MainPage extends JPanel {
         searchBar = new SearchBar();
         searchBar.setBackground(Color.yellow);
         searchBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-        centerPanel.add(searchBar, BorderLayout.CENTER);
+        centerPanel.add(searchBar, BorderLayout.NORTH);
 
         centerPanel.add(new MoviePanel(), BorderLayout.CENTER);
     }
@@ -88,7 +88,7 @@ public class MainPage extends JPanel {
     }
 
     void loadDefaultMenu(){
-        centerPanel.removeAll();
+        this.remove(centerPanel);
         createCenterPanel();
         revalidate();
         repaint();
