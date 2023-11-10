@@ -41,7 +41,14 @@ public class HeaderBar extends JPanel {
             }
         });
         labelAccount = new JLabel(iconAccount);
-
+        labelAccount.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Account icon clicked!");
+                //TODO décharger la page actuelle puis charger AccountPage
+                // seulement si connecté en sub
+            }
+        });
         JPanel panelLeftIcons = new JPanel();
         panelLeftIcons.setLayout(new BoxLayout(panelLeftIcons, BoxLayout.X_AXIS));
         panelLeftIcons.add(labelHome);
