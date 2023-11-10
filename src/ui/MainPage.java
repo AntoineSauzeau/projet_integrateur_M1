@@ -13,7 +13,7 @@ public class MainPage extends JPanel {
     //Désactiver/activer des fonctionnalité dans la page selon type de client + ajuster prix location
     Boolean Subscribed = false;
 
-    public MainPage(){
+    public MainPage(int sub){
 
         setLayout(new BorderLayout());
         setBackground(Color.green);

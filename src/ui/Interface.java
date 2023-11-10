@@ -27,7 +27,7 @@ public class Interface {
 
     public void changePage(InterfacePage newPage){
         if(newPage == InterfacePage.MAIN){
-            frame.add(new MainPage());
+            frame.add(new ConnectionPage());
         }
     }
 }
