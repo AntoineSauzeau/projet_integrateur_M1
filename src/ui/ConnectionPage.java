@@ -24,7 +24,9 @@ public class ConnectionPage extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 final Container parent = self.getParent();
                 parent.removeAll();
-                parent.add(new MainPage(1)); //
+                parent.add(new MainPage(1));
+                parent.revalidate();
+                parent.repaint();
             }
         });
 
@@ -36,8 +38,13 @@ public class ConnectionPage extends JPanel {
                 final Container parent = self.getParent();
                 parent.removeAll();
                 parent.add(new MainPage(0)); //
+                parent.revalidate();
+                parent.repaint();
             }
         });
+
+        this.add(buttonSub, BorderLayout.CENTER);
+        this.add(buttonNoSub,BorderLayout.CENTER);
 
     }
 }
