@@ -16,13 +16,20 @@ public class SearchBar extends JPanel {
 
         loadIcons();
 
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
 
         bttnSearch = new JLabel(iconSearch);
-        tfSearch = new JTextField();
+        c.gridx = 0;
+        c.gridy = 0;
+        add(bttnSearch, c);
 
-        add(tfSearch);
-        add(bttnSearch);
+        tfSearch = new JTextField();
+        c.gridx = 1;
+        c.gridy = 0;
+        c.weightx = 0.8;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        add(tfSearch, c);
     }
 
     public void loadIcons(){

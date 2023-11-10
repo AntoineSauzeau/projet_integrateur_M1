@@ -24,20 +24,27 @@ public class MainPage extends JPanel {
         add(headerBar, BorderLayout.PAGE_START);
 
         JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.setLayout(new GridBagLayout());
         centerPanel.setBackground(Color.blue);
         add(centerPanel, BorderLayout.CENTER);
 
+        addSearchBar(centerPanel);
+        addFrontPageFilmsPanel(centerPanel);
+        addAvailableFilmsPanel(centerPanel);
+    }
+
+    void addSearchBar(JPanel parent){
         searchBar = new SearchBar();
         searchBar.setBackground(Color.yellow);
-        searchBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-        centerPanel.add(searchBar);
+        //searchBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
 
-        JPanel frontPageFilmsPanel = createFrontPageFilmsPanel();
-        centerPanel.add(frontPageFilmsPanel);
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 0;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridwidth = 1;
 
-        /*JPanel availableFilmsPanel = createAvailableFilmsPanel();
-        centerPanel.add(availableFilmsPanel);*/
+        parent.add(searchBar, c);
     }
 
     JPanel createFrontPageFilmsPanel(){
@@ -50,7 +57,33 @@ public class MainPage extends JPanel {
         return p;
     }
 
+    void addFrontPageFilmsPanel(JPanel parent){
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 1;
+        c.weighty = 0.3;
+
+        JPanel frontPageFilmsPanel = createFrontPageFilmsPanel();
+        parent.add(frontPageFilmsPanel, c);
+    }
+
     JPanel createAvailableFilmsPanel(){
-        return null;
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+
+        JLabel labelTitle = new JLabel("Films disponibles");
+        p.add(labelTitle);
+
+        return p;
+    }
+
+    void addAvailableFilmsPanel(JPanel parent){
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 2;
+        c.weighty = 0.5;
+
+        JPanel availableFilmsPanel = createAvailableFilmsPanel();
+        parent.add(availableFilmsPanel, c);
     }
 }
