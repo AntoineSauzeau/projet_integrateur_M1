@@ -13,7 +13,7 @@ public class Interface {
     InterfacePage page;
 
 
-    public Interface() throws IOException {
+    public Interface() {
 
         page = InterfacePage.MAIN;
 
@@ -26,7 +26,7 @@ public class Interface {
         //Faire pop la fenetre au centre
     }
 
-    public void changePage(InterfacePage newPage) throws IOException {
+    public void changePage(InterfacePage newPage) {
         frame.getContentPane().removeAll();
         if(newPage == InterfacePage.MAIN){
             frame.add(new MainPage());

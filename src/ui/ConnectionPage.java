@@ -20,22 +20,25 @@ import java.io.IOException;
 //Page de connexion en attente de l'identification du client
 public class ConnectionPage extends JPanel {
 
-    Interface interface_;
     JButton buttonNoSub;
     JButton buttonSub;
+    ImageIcon iconSub;
+    ImageIcon iconNoSub;
 
     //Faire deux boutons pour log subscriber et log non-subscriber
-    public ConnectionPage() throws IOException {
+    public ConnectionPage() {
 
         this.setLayout(new FlowLayout());
 
+        loadIcons();
+
         buttonSub = new JButton("Log Sub");
-        buttonSub.setIcon(new ImageIcon(ImageIO.read(new File("assets/img/log-inIcon.png"))));
+        buttonSub.setIcon(iconSub);
         buttonSub.setHorizontalTextPosition(SwingConstants.CENTER);
         buttonSub.setVerticalTextPosition(SwingConstants.BOTTOM);
 
         buttonNoSub = new JButton("Log Non-sub");
-        buttonNoSub.setIcon(new ImageIcon(ImageIO.read(new File("assets/img/log-inIcon.png"))));
+        buttonNoSub.setIcon(iconNoSub);
         buttonNoSub.setHorizontalTextPosition(SwingConstants.CENTER);
         buttonNoSub.setVerticalTextPosition(SwingConstants.BOTTOM);
 
@@ -45,6 +48,15 @@ public class ConnectionPage extends JPanel {
         setEventHandlers();
     }
 
+    public void loadIcons(){
+        try {
+            iconSub = new ImageIcon(ImageIO.read(new File("assets/img/log-inIcon.png")));
+            iconNoSub = new ImageIcon(ImageIO.read(new File("assets/img/log-inIcon.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setEventHandlers(){
 
         buttonSub.addActionListener(new ActionListener() {
@@ -52,22 +64,14 @@ public class ConnectionPage extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Application.setNewConnectedClient(new Subscriber());
-                try {
-                    Application.getInterface().changePage(InterfacePage.MAIN);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                Application.getInterface().changePage(InterfacePage.MAIN);
             }
         });
         buttonNoSub.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Application.setNewConnectedClient(new NonSubscriber());
-                try {
-                    Application.getInterface().changePage(InterfacePage.MAIN);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                Application.getInterface().changePage(InterfacePage.MAIN);
             }
         });
     }

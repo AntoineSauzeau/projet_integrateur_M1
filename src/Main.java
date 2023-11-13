@@ -10,13 +10,9 @@ public class Main {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    Interface ui = new Interface();
-                    Application.setNewInterface(ui);
-                    ui.show();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                Interface ui = new Interface();
+                Application.setNewInterface(ui);
+                ui.show();
             }
         });
     }

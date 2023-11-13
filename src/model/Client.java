@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public abstract class Client {
-    boolean isSuscriber;
+    boolean isSubscriber;
     Integer creditCardNumber;
 
     ArrayList<Rent> rentals;
@@ -15,10 +15,10 @@ public abstract class Client {
     }
 
     public boolean isSubscriber(){
-        return isSuscriber;
+        return isSubscriber;
     }
 
     public void SetSubscriber(boolean s){
-        isSuscriber = s;
+        isSubscriber = s;
     }
 }

@@ -62,23 +62,15 @@ public class HeaderBar extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("Exit icon clicked!");
-                try {
-                    Application.getInterface().changePage(InterfacePage.CONNECTION);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                Application.getInterface().changePage(InterfacePage.CONNECTION);
             }
         });
 
         labelAccount.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                try {
                     if(Application.getClientConnected().isSubscriber())
                         Application.getInterface().changePage(InterfacePage.ACCOUNT);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
             }
         });
     }

@@ -9,7 +9,7 @@ public class Subscriber extends Client {
     //TODO faire des getter et setter avec des clones si on est propre
 
     public Subscriber(){
-        isSuscriber = true;
+        isSubscriber = true;
     }
 
     public void getInformation(){
