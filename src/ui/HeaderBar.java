@@ -1,5 +1,7 @@
 package ui;
 
+import model.Application;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -16,39 +18,21 @@ public class HeaderBar extends JPanel {
     JLabel labelHome;
     JLabel labelExit;
     JLabel labelAccount;
+    MainPage mainPage;
 
-    public HeaderBar(MainPage parent){
+    public HeaderBar(MainPage mainPage){
+
+        this.mainPage = mainPage;
 
         loadIcons();
 
         labelHome = new JLabel(iconHome);
-        labelHome.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("Home icon clicked!");
-                parent.loadDefaultMenu();
-                parent.revalidate();
-                parent.repaint();
-            }
-        });
         labelHome.setPreferredSize(new Dimension(32, 32));
+
         labelExit = new JLabel(iconExit);
-        labelExit.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("Exit icon clicked!");
-                //TODO décharger la page actuelle puis charger ConnectionPage
-            }
-        });
+
         labelAccount = new JLabel(iconAccount);
-        labelAccount.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                parent.loadAccountPage();
-                //TODO décharger la page actuelle puis charger AccountPage
-                // seulement si connecté en sub
-            }
-        });
+
         JPanel panelLeftIcons = new JPanel();
         panelLeftIcons.setLayout(new BoxLayout(panelLeftIcons, BoxLayout.X_AXIS));
         panelLeftIcons.add(labelHome);
@@ -61,6 +45,42 @@ public class HeaderBar extends JPanel {
         setLayout(new BorderLayout());
         add(panelLeftIcons, BorderLayout.LINE_START);
         add(panelRightIcons, BorderLayout.LINE_END);
+
+        setEventHandlers();
+    }
+
+    public void setEventHandlers(){
+        labelHome.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Home icon clicked!");
+                mainPage.loadDefaultMenu();
+            }
+        });
+
+        labelExit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Exit icon clicked!");
+                try {
+                    Application.getInterface().changePage(InterfacePage.CONNECTION);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+        labelAccount.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    if(Application.getClientConnected().isSubscriber())
+                        Application.getInterface().changePage(InterfacePage.ACCOUNT);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     public void loadIcons(){

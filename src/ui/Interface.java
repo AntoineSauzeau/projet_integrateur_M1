@@ -21,15 +21,24 @@ public class Interface {
         frame.setMinimumSize(new Dimension(INTERFACE_WIDTH, INTERFACE_HEIGHT));
         // frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        changePage(InterfacePage.MAIN);
-        frame.setVisible(true);
+        changePage(InterfacePage.CONNECTION);
 
         //Faire pop la fenetre au centre
     }
 
     public void changePage(InterfacePage newPage) throws IOException {
+        frame.getContentPane().removeAll();
         if(newPage == InterfacePage.MAIN){
+            frame.add(new MainPage());
+        }
+        else if(newPage == InterfacePage.CONNECTION){
             frame.add(new ConnectionPage());
         }
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    public void show(){
+        frame.setVisible(true);
     }
 }

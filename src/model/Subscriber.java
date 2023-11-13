@@ -8,6 +8,10 @@ public class Subscriber extends Client {
     private Double credit;
     //TODO faire des getter et setter avec des clones si on est propre
 
+    public Subscriber(){
+        isSuscriber = true;
+    }
+
     public void getInformation(){
         //TODO
         return;

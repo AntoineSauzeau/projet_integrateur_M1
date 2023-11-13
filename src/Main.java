@@ -1,4 +1,5 @@
 
+import model.Application;
 import ui.Interface;
 
 import javax.swing.*;
@@ -10,7 +11,9 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Interface();
+                    Interface ui = new Interface();
+                    Application.setNewInterface(ui);
+                    ui.show();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
