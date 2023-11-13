@@ -20,6 +20,7 @@ public class Interface {
         frame = new JFrame("AL2000");
         frame.setMinimumSize(new Dimension(INTERFACE_WIDTH, INTERFACE_HEIGHT));
         // frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         changePage(InterfacePage.CONNECTION);
 
@@ -28,12 +29,17 @@ public class Interface {
 
     public void changePage(InterfacePage newPage) {
         frame.getContentPane().removeAll();
+
         if(newPage == InterfacePage.MAIN){
             frame.add(new MainPage());
         }
         else if(newPage == InterfacePage.CONNECTION){
             frame.add(new ConnectionPage());
         }
+        else if(newPage == InterfacePage.ACCOUNT){
+            frame.add(new AccountPage());
+        }
+
         frame.revalidate();
         frame.repaint();
     }
