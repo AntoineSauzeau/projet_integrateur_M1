@@ -20,21 +20,20 @@ CREATE TABLE Clients(
 CREATE table Subscribers(
     name varchar(50) not null,
     clientID int not null,
-    creditCard int not null,
     address varchar(50) not null,
     birthDate date not null,
     mail varchar(50) not null,
     balance float not null, -- Contrainte appli arrondi à 2 chiffres après la virgule
     subCardID int not null,
     primary key (clientID),
-    foreign key (clientID) references LesClients(clientID)
+    foreign key (clientID) references Clients(clientID) ON DELETE CASCADE
 );
 
 CREATE table NonSubscribers(
     clientID int not null,
     creditCard int not null,
     primary key (clientID),
-    foreign key (clientID) references LesClients(clientID)
+    foreign key (clientID) references Clients(clientID) ON DELETE CASCADE
 );  
 
 CREATE table Movies(
@@ -53,8 +52,8 @@ CREATE table Rents(
     withdrawalDate date not null,
     paid boolean not null,
     returnDate date, -- null si pas encore rendu
-    foreign key (clientID) references LesClients(clientID),
-    foreign key (movieID) references LesFilms(moviID)
+    foreign key (clientID) references Clients(clientID),
+    foreign key (movieID) references Movies(movieID)
 );
 
 
