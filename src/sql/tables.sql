@@ -1,20 +1,19 @@
-DROP TABLE IF EXIST Subscriber;
-DROP TABLE IF EXIST NonSubscriber;
-DROP TABLE IF EXIST Movies;
-DROP TABLE IF EXIST Rents;
-DROP TABLE IF EXIST Available;
-DROP TABLE IF EXIST AL2000;
-DROP TABLE IF EXIST Actors;
-DROP TABLE IF EXIST MovieActors;
-DROP TABLE IF EXIST Reservations;
+DROP TABLE IF EXISTS Subscribers;
+DROP TABLE IF EXISTS NonSubscribers;
+DROP TABLE IF EXISTS Movies;
+DROP TABLE IF EXISTS Rents;
+DROP TABLE IF EXISTS Available;
+DROP TABLE IF EXISTS AL2000;
+DROP TABLE IF EXISTS Actors;
+DROP TABLE IF EXISTS MovieActors;
+DROP TABLE IF EXISTS Reservations;
+DROP TABLE IF EXISTS Clients;
 
--- Type enum
-CREATE TYPE CardStatus AS ENUM ('Active','Frozen');
+
 
 CREATE TABLE Clients(
-    clientID int not null auto_increment,
+    clientID integer PRIMARY key autoincrement,
     creditCard int not null,
-    primary key (clientID),
     check (creditCard >= 0)
 );
 
@@ -26,7 +25,6 @@ CREATE table Subscribers(
     birthDate date not null,
     mail varchar(50) not null,
     balance float not null, -- Contrainte appli arrondi à 2 chiffres après la virgule
-    status CardStatus not null,
     subCardID int not null,
     primary key (clientID),
     foreign key (clientID) references LesClients(clientID)
@@ -40,27 +38,23 @@ CREATE table NonSubscribers(
 );  
 
 CREATE table Movies(
-    movieID int not null auto_increment,
+    movieID integer PRIMARY key autoincrement,
     movieName varchar(50) not null,
     directorName varchar(50) not null,
     actorsName varchar(50) not null,
-    summary varchar(300) not null,
-    primary key (idFilm)
+    summary varchar(300) not null
 );
 
-CREATE TYPE SupportType AS ENUM ('BluRay','QRCode');
 
 CREATE table Rents(
-    rentID int not null auto_increment,
+    rentID integer primary key autoincrement,
     clientID int not null,
     movieID int not null,
     withdrawalDate date not null,
-    support SupportType not null,
     paid boolean not null,
     returnDate date, -- null si pas encore rendu
-    primary key (idLocation),
     foreign key (clientID) references LesClients(clientID),
-    foreign key (idFilm) references LesFilms(idFilm)
+    foreign key (movieID) references LesFilms(moviID)
 );
 
 
@@ -68,25 +62,23 @@ CREATE table Rents(
 CREATE table Available(
     movieID int not null,
     quantity int not null,
-    machineID int not null
+    machineID int not null,
     primary key (machineID,movieID),
     foreign key (movieID) references Movies(movieID),
     foreign key (machineID) references AL2000(machineID),
-    check (quantity >= 0),
+    check (quantity >= 0)
     -- Trigger pour somme totale < 100
 );
 
 CREATE table AL2000(
-    machineID int not null auto_increment,
+    machineID integer PRIMARY key autoincrement,
     machineName varchar(50) not null,
-    location varchar(50) not null,
-    primary key (machineID)
+    location varchar(50) not null
 );
 
 CREATE table Actors(
-    actorID int not null auto_increment,
-    actorName varchar(50) not null,
-    primary key (actorID)
+    actorID integer primary key autoincrement,
+    actorName varchar(50) not null
 );
 
 
@@ -105,6 +97,9 @@ CREATE TABLE Reservations(
     primary key (machineID,movieID,reservationDate),
     foreign key (machineID,movieID) references Available(machineID,movieID)
 );
+
+
+
 
 
 -- Trigger : Un client subscriber ne peut louer que 3 films en même temps et 1 film pour les non subscriber
