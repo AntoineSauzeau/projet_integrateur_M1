@@ -8,11 +8,11 @@ public class Rent {
     Date returnDate;
     boolean paid;
     double cost;
-
+    Penalty penalty;
 
     public Rent(){
 
-    }
+        }
 
     // SETTERS - GETTERS ================================================================================
 
