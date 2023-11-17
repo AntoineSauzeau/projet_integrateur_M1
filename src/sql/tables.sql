@@ -60,8 +60,8 @@ CREATE table Rents(
 
 CREATE table Available(
     movieID int not null,
-    quantity int not null,
     machineID int not null,
+    quantity int not null,
     primary key (machineID,movieID),
     foreign key (movieID) references Movies(movieID),
     foreign key (machineID) references AL2000(machineID),

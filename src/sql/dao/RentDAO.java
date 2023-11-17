@@ -2,11 +2,10 @@ package sql.dao;
 
 import model.Movie;
 import model.Rent;
+import sql.Tool.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class RentDAO {
 
@@ -32,10 +31,10 @@ public class RentDAO {
                 rent.setType(result.getInt("type"));
                 rent.setReturnDate(result.getDate("returnDate"));
 
-                MovieDAO movieDAO = new MovieDAO(null);     //TODO BIEN FOURNIR CONNECTION PLUTOT QUE NULL
+                MovieDAO movieDAO = new MovieDAO(DatabaseConnection.getConnection(true));
                 rent.setMovie(movieDAO.getById(movieID));
 
-                ClientDAO clientDAO = new ClientDAO(null);
+                ClientDAO clientDAO = new ClientDAO(DatabaseConnection.getConnection(true));
                 rent.setClient(clientDAO.getById(clientID));
             }
         } catch (SQLException e) {
@@ -43,4 +42,13 @@ public class RentDAO {
         }
         return rent;
     }
+
+    public ArrayList<Rent> getClientRents(int clientId){
+        ArrayList<Rent> rents = new ArrayList<Rent>();
+
+        String sql = "SELECT withdrawalDate, paid, type, returnDate FROM Rents WHERE clientID=?";
+
+        return rents;
+    }
+
 }
