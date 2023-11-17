@@ -22,7 +22,7 @@ public class Client {
         isSubscriber = s;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
