@@ -8,7 +8,7 @@ public class Movie {
     protected String category;
     protected String summary;
     protected String director;
-    protected ArrayList<String> mainActors ;
+    protected ArrayList<String> mainActors;
 
 
 

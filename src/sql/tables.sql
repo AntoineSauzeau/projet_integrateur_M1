@@ -75,7 +75,7 @@ CREATE table AL2000(
     location varchar(50) not null
 );
 
-CREATE table Actors(
+CREATE table Actors (
     actorID integer primary key autoincrement,
     actorName varchar(50) not null
 );

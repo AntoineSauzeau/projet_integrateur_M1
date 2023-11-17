@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 
 public abstract class Client {
+    int id;
     boolean isSubscriber;
     Integer creditCardNumber;
-
     ArrayList<Rent> rentals;
 
     public Client(){

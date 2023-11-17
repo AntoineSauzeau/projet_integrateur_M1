@@ -3,10 +3,10 @@ package sql.dao;
 import model.Movie;
 import model.Subscriber;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MovieDAO {
 
@@ -17,11 +17,8 @@ public class MovieDAO {
         this.connection = connection;
     }
 
-    public void create(Movie m){
-
-    }
-
     public Movie getById(int id){
+        Movie movie = null;
 
         String sql = "SELECT * FROM Movies WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -29,17 +26,14 @@ public class MovieDAO {
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
             if(result.first()){
-                Movie movie = new Movie();
+                movie = new Movie();
 
                 movie.setId(id);
                 movie.setName(result.getString("movieName"));
                 movie.setCategory(result.getString("category"));
                 movie.setDirector(result.getString("directorName"));
                 movie.setSummary(result.getString("summary"));
-
-                //TODO Decouper les acteurs en liste
-                /*result.getString("actorsName")
-                movie.setMainActors();*/
+                movie.setMainActors(getActors(id));
 
                 return movie;
             }
@@ -47,7 +41,7 @@ public class MovieDAO {
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return movie;
     }
 
 }
