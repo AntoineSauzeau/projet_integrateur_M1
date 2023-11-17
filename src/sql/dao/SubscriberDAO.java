@@ -7,12 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SubscriberDAO {
+public class SubscriberDAO extends ClientDAO{
 
     private Connection connection; // L'objet de connexion à la base de données
 
     // Constructeur pour injecter la connexion
     public SubscriberDAO(Connection connection) {
+        super(connection);
         this.connection = connection;
     }
 
@@ -35,7 +36,10 @@ public class SubscriberDAO {
     }
 
 
+    @Override
     public Subscriber getById(int id){
+
+        Subscriber sub = (Subscriber) super.getById(id);
 
         String sql = "SELECT * FROM Subscribers WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -43,7 +47,6 @@ public class SubscriberDAO {
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
             if(result.first()){
-                Subscriber sub = new Subscriber();
 
                 sub.setId(id);
                 sub.setName(result.getString("name"));

@@ -4,11 +4,14 @@ import java.util.Date;
 
 public class Rent {
 
-    Date rentDate;
-    Date returnDate;
-    boolean paid;
-    double cost;
-    Penalty penalty;
+    private Date rentDate;
+    private Date returnDate;
+    private boolean paid;
+    private double cost;
+    private int type;
+    private Client client;
+    private Movie movie;
+    private Penalty penalty;
 
     public Rent(){
 
@@ -46,6 +49,36 @@ public class Rent {
 
     public double getCost(){
         return cost;
+    }
+
+    public int getIType() {
+        return type;
+    }
+
+    public RentType getType(){
+        if(type == 0)
+            return RentType.BLURAY;
+        return RentType.QRCODE;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
     // ====================================================================================================

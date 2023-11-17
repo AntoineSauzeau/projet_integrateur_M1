@@ -50,6 +50,7 @@ CREATE table Rents(
     movieID int not null,
     withdrawalDate date not null,
     paid boolean not null,
+    type int not null,
     returnDate date, -- null si pas encore rendu
     foreign key (clientID) references Clients(clientID),
     foreign key (movieID) references Movies(movieID)
