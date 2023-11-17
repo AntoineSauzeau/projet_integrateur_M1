@@ -2,8 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-public abstract class Movie {
+public class Movie {
     protected String title;
+    protected Integer id;
     protected String category;
     protected String summary;
     protected String director;
@@ -48,5 +49,13 @@ public abstract class Movie {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public Integer getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 }
