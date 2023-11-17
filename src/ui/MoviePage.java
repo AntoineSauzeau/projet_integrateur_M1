@@ -3,12 +3,16 @@ package ui;
 
 
 import javax.swing.*;
+import java.util.ArrayList;
 
-public class MoviePage extends JPanel {
+import model.PhysicalMovie;
 
-    public MoviePage () {
-        
+public abstract class MoviePage extends JPanel {
 
+    ArrayList<PhysicalMovie> movies;
+
+    public void setMovies(ArrayList<PhysicalMovie> movies) {
+        this.movies = movies;
     }
 
 }
