@@ -40,7 +40,6 @@ CREATE table Movies(
     movieID integer PRIMARY key autoincrement,
     movieName varchar(50) not null,
     directorName varchar(50) not null,
-    actorsName varchar(50) not null,
     summary varchar(300) not null
 );
 
