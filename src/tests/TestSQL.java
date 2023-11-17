@@ -1,33 +1,33 @@
 package tests;
 
+import model.Subscriber;
+import sql.Tool.DatabaseConnection;
 import sql.Tool.Session;
+import sql.dao.SubscriberDAO;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
-/*
+
 public class TestSQL {
     public static void main(String[] args) throws SQLException {
         // Créez une connexion à votre base de données (par exemple, MySQL)
         Session session = new Session(false);
+        //DatabaseConnection dataConn = new DatabaseConnection();
+        Connection conn = DatabaseConnection.getConnection(false);
 
-        try {
+        // Créez un gestionnaire de transactions
 
-            // Créez un gestionnaire de transactions
+        // Créez un service avec le DAO et le gestionnaire de transactions
+        SubscriberDAO subscriberService = new SubscriberDAO(conn);
 
-            // Créez un service avec le DAO et le gestionnaire de transactions
-            UtilisateurService utilisateurService = new UtilisateurService(session);
+        // Exemple d'utilisation du service
+        Subscriber newSubscriber = new Subscriber();
+        subscriberService.create(newSubscriber);
 
-            // Exemple d'utilisation du service
-            Utilisateur nouvelUtilisateur = new Utilisateur(1, "John", "Doe");
-            utilisateurService.createUser(nouvelUtilisateur);
-
-            Utilisateur utilisateurRecupere = utilisateurService.getUserById(1);
-            System.out.println("Utilisateur récupéré : " + utilisateurRecupere);
+        //Subscriber utilisateurRecupere = subscriberService.getUserById(1);
+        //System.out.println("Utilisateur récupéré : " + utilisateurRecupere);
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            session.close();
-        }
     }
-}*/
+}
