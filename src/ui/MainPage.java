@@ -19,7 +19,7 @@ public class MainPage extends JPanel {
         setBackground(Color.green);
         //setPreferredSize(new Dimension(200, 200));
 
-        headerBar = new HeaderBar(this);
+        headerBar = new HeaderBar();
         headerBar.setBackground(Color.red);
         add(headerBar, BorderLayout.PAGE_START);
 
@@ -40,12 +40,12 @@ public class MainPage extends JPanel {
         centerPanel.add(new MoviePanel(), BorderLayout.CENTER);
     }
 
-    void loadDefaultMenu(){
+    /*void loadDefaultMenu(){
         this.remove(centerPanel);
         createCenterPanel();
         revalidate();
         repaint();
-    }
+    }*/
 
     /*void loadAccountPage(){
         this.remove(centerPanel);

@@ -18,11 +18,8 @@ public class HeaderBar extends JPanel {
     JLabel labelHome;
     JLabel labelExit;
     JLabel labelAccount;
-    MainPage mainPage;
 
-    public HeaderBar(MainPage mainPage){
-
-        this.mainPage = mainPage;
+    public HeaderBar(){
 
         loadIcons();
 
@@ -54,7 +51,7 @@ public class HeaderBar extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("Home icon clicked!");
-                mainPage.loadDefaultMenu();
+                Application.getInterface().changePage(InterfacePage.MAIN);
             }
         });
 

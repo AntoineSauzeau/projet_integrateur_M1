@@ -5,25 +5,190 @@ import java.awt.*;
 public class AccountPage extends JPanel{
     //Page avec toute les informations du compte
 
-    private JLabel accountNameLabel;
-    private JLabel subCardLabel;
-    private JLabel creditsLabel;
-    private JLabel numberOfLocationsLabel;
-    private JButton AddCreditButton;
-    private JButton getHistoryButton;
+    private HeaderBar headerBar;
+    private JLabel nameValueLabel;
+    private JLabel addressValueLabel;
+    private JLabel mailValueLabel;
+    private JLabel birthdateValueLabel;
+    private JLabel subCardValueLabel;
+    private JLabel balanceValueLabel;
+    private JLabel creditCardValueLabel;
+
+    private Font fontDialogBold_25;
+    private Font fontDialog_20;
 
 
+    public AccountPage(){
 
-    public AccountPage() {
-        accountNameLabel = new JLabel("Nom du compte");
-        subCardLabel = new JLabel("Carte de sub");
-        creditsLabel = new JLabel("Solde");
-        numberOfLocationsLabel = new JLabel("Nombre de locations");
-        AddCreditButton = new JButton("Ajouter des crédits");
-        getHistoryButton = new JButton("Historique des locations");
+        createFonts();
 
-        this.setLayout(new GridLayout(6, 1));
-        this.add(accountNameLabel);
-        this.add(subCardLabel);
+        setLayout(new BorderLayout());
+
+        headerBar = new HeaderBar();
+        add(headerBar, BorderLayout.PAGE_START);
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridBagLayout());
+        add(centerPanel, BorderLayout.CENTER);
+
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.fill = GridBagConstraints.BOTH;
+
+        JPanel blankLeftPanel = new JPanel();
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 0.20;
+        c.gridheight = 3;
+        centerPanel.add(blankLeftPanel, c);
+
+        JPanel personalPanel = createPersonalPanel();
+        c.gridx = 1;
+        c.gridy = 0;
+        c.weightx = 0.6;
+        c.gridheight = 1;
+        centerPanel.add(personalPanel, c);
+
+        JPanel paymentPanel = createPaymentPanel();
+        c.gridx = 1;
+        c.gridy = 1;
+        c.weightx = 0.6;
+        c.gridheight = 1;
+        centerPanel.add(paymentPanel, c);
+
+        JPanel blankRightPanel = new JPanel();
+        c.gridx = 2;
+        c.gridy = 0;
+        c.weightx = 0.20;
+        c.gridheight = 3;
+        centerPanel.add(blankRightPanel, c);
+    }
+
+    public void createFonts(){
+        fontDialogBold_25 = new Font(Font.DIALOG,  Font.BOLD, 25);
+        fontDialog_20 = new Font(Font.DIALOG,  Font.PLAIN, 20);
+    }
+
+    JPanel createPersonalPanel(){
+        JPanel p = new JPanel();
+        p.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.weightx = 1;
+
+        JLabel personalInformationsLabel = new JLabel("Infos personnelles");
+        personalInformationsLabel.setFont(fontDialogBold_25);
+        c.gridx = 0;
+        c.gridy = 0;
+        c.insets = new Insets(0, 0, 38, 0);
+        c.anchor = GridBagConstraints.CENTER;
+        p.add(personalInformationsLabel, c);
+
+        //c.anchor = GridBagConstraints.LINE_START;
+        c.insets = new Insets(0, 0, 10, 20);
+        c.anchor = GridBagConstraints.LINE_START;
+
+        JPanel namePanel = new JPanel();
+        c.gridy++;
+        p.add(namePanel, c);
+
+        JLabel nameLabel = createFieldTitleLabel("Nom :");
+        namePanel.add(nameLabel);
+        nameValueLabel = createFieldValueLabel("Vincent");
+        namePanel.add(nameValueLabel);
+
+        JPanel addressPanel = new JPanel();
+        c.gridy++;
+        p.add(addressPanel, c);
+
+        JLabel adressLabel = createFieldTitleLabel("Adresse :");
+        addressPanel.add(adressLabel);
+        addressValueLabel = createFieldValueLabel("10 rue du Chateau");
+        addressPanel.add(addressValueLabel);
+
+        JPanel mailPanel = new JPanel();
+        c.gridy++;
+        p.add(mailPanel, c);
+
+        JLabel mailLabel = createFieldTitleLabel("Mail :");
+        mailPanel.add(mailLabel);
+        mailValueLabel = createFieldValueLabel("machin@gmail.com");
+        mailPanel.add(mailValueLabel);
+
+        JPanel birthdatePanel = new JPanel();
+        c.gridy++;
+        p.add(birthdatePanel, c);
+
+        JLabel birthdateLabel = createFieldTitleLabel("Date de naissance :");
+        birthdatePanel.add(birthdateLabel);
+        birthdateValueLabel = createFieldValueLabel("15/11/2002");
+        birthdatePanel.add(birthdateValueLabel);
+
+        JPanel subCardPanel = new JPanel();
+        c.gridy++;
+        p.add(subCardPanel, c);
+
+        JLabel subcardLabel = createFieldTitleLabel("N° carte abonné :");
+        subCardPanel.add(subcardLabel);
+        subCardValueLabel = createFieldValueLabel("24512965456521");
+        subCardPanel.add(subCardValueLabel);
+
+        return p;
+    }
+
+    JLabel createFieldTitleLabel(String value){
+        JLabel label = new JLabel(value);
+        label.setFont(fontDialog_20);
+        return label;
+    }
+
+    JLabel createFieldValueLabel(String value){
+        JLabel label = new JLabel(value);
+        label.setFont(fontDialog_20);
+        return label;
+    }
+
+    JPanel createPaymentPanel(){
+        JPanel p = new JPanel();
+        p.setLayout(new GridBagLayout());
+
+        GridBagConstraints c = new GridBagConstraints();
+        c.weightx = 1;
+
+        JLabel titleLabel = new JLabel("Infos paiement");
+        titleLabel.setFont(fontDialogBold_25);
+        c.gridx = 0;
+        c.gridy = 0;
+        c.insets = new Insets(55, 0, 38, 0);
+        c.anchor = GridBagConstraints.CENTER;
+        p.add(titleLabel, c);
+
+        c.insets = new Insets(0, 0, 10, 20);
+        c.anchor = GridBagConstraints.LINE_START;
+
+        JPanel balancePanel = new JPanel();
+        c.gridy++;
+        p.add(balancePanel, c);
+
+        JLabel balanceLabel = createFieldTitleLabel("Solde :");
+        balancePanel.add(balanceLabel);
+        balanceValueLabel = createFieldValueLabel("23 euros");
+        balancePanel.add(balanceValueLabel);
+
+        JPanel creditCardPanel = new JPanel();
+        c.gridy++;
+        p.add(creditCardPanel, c);
+
+        JLabel creditCardLabel = createFieldTitleLabel("N° carte de crédit :");
+        creditCardPanel.add(creditCardLabel);
+        creditCardValueLabel = createFieldValueLabel("**** **** **** 5842");
+        creditCardPanel.add(creditCardValueLabel);
+
+        return p;
+    }
+
+    JPanel createHistoryPanel(){
+        JPanel p = new JPanel();
+        return p;
     }
 }
