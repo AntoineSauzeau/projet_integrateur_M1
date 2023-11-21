@@ -20,12 +20,12 @@ public class MovieDAO {
     public Movie getById(int id){
         Movie movie = null;
 
-        String sql = "SELECT * FROM Movies WHERE id = ?";
+        String sql = "SELECT * FROM Movies WHERE movieID = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
-            if(result.first()){
+            if(result.next()){
                 movie = new Movie();
 
                 movie.setId(id);
@@ -47,12 +47,16 @@ public class MovieDAO {
     private ArrayList<String> getActors(int movieID){
         ArrayList<String> actors = new ArrayList<String>();
 
-        String sql = "SELECT actorName FROM Movies JOIN MovieActors USING(movieID) USING Actors USING (movieID) WHERE id = ?";
+        //String sql = "SELECT actorName FROM Movies JOIN MovieActors USING (movieID) USING Actors USING (movieID) WHERE id = ?";
+        String sql = "SELECT actorName FROM Movies " +
+                "JOIN MovieActors USING (movieID) " +
+                "JOIN Actors USING (actorID) " +
+                "WHERE movieID = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, movieID);
             ResultSet result = statement.executeQuery();
-            if (result.first()) {
+            if (result.next()) {
                 while(result.isAfterLast()){
                     actors.add(result.getString("actorName"));
                 }
@@ -65,12 +69,18 @@ public class MovieDAO {
 
     public Movie getByActor(String name){
 
-        String sql = "SELECT * FROM Movies m JOIN MoviesActors ma USING(movieID) JOIN Actors a USING (actorID) WHERE actorName = ?";
+        //String sql = "SELECT * FROM Movies m JOIN MoviesActors ma USING (movieID) JOIN Actors a USING (actorID) WHERE actorName = ?";
+        String sql = "SELECT * FROM Movies m " +
+                "JOIN MoviesActors ma ON m.movieID = ma.movieID " +
+                "JOIN Actors a ON ma.actorID = a.actorID " +
+                "WHERE actorName = ?";
+
+
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, name);
             ResultSet result = statement.executeQuery();
-            if(result.first()){
+            if(result.next()){
                 Movie movie = new Movie();
 
                 movie.setId(result.getInt("movieID"));
@@ -97,16 +107,16 @@ public class MovieDAO {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, offset);
-            statement.setInt(1, number);
+            statement.setInt(2, number);
             ResultSet result = statement.executeQuery();
 
             while(result.next()){
                 Movie movie = new Movie();
 
-                int id = result.getInt("id");
+                int id = result.getInt("movieID");
                 movie.setId(id);
                 movie.setName(result.getString("movieName"));
-                movie.setCategory(result.getString("category"));
+                //movie.setCategory(result.getString("category"));
                 movie.setDirector(result.getString("directorName"));
                 movie.setSummary(result.getString("summary"));
                 movie.setMainActors(getActors(id));
