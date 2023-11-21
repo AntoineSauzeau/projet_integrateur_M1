@@ -1,12 +1,17 @@
 package tests;
 
+import model.Movie;
+import sql.dao.MovieDAO;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ConnexionSQLite {
+    static Connection connexion = null;
+
     public static void main(String[] args) {
-        Connection connexion = null;
 
         try {
             // Charger le pilote JDBC SQLite
@@ -19,6 +24,9 @@ public class ConnexionSQLite {
             connexion = DriverManager.getConnection(url);
 
             System.out.println("Connexion à la base de données SQLite établie avec succès.");
+
+            MovieDAO movieDAO = new MovieDAO(connexion);
+            System.out.println(movieDAO.getAll(0, 10));
 
             // Vous pouvez maintenant exécuter des requêtes sur la base de données...
 
@@ -35,4 +43,10 @@ public class ConnexionSQLite {
             }
         }
     }
+
+    public List<Movie> getAllMovies(int offset, int number){
+        MovieDAO movieDAO = new MovieDAO(connexion);
+        return movieDAO.getAll(0, 10);
+    }
+
 }
