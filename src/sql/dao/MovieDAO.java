@@ -88,4 +88,36 @@ public class MovieDAO {
         }
         return null;
     }
+
+
+    public List<Movie> getAll(int offset, int number){
+        List<Movie> movies = new ArrayList<>();
+
+        String sql = "SELECT * FROM Movies LIMIT ?, ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, offset);
+            statement.setInt(1, number);
+            ResultSet result = statement.executeQuery();
+
+            while(result.next()){
+                Movie movie = new Movie();
+
+                int id = result.getInt("id");
+                movie.setId(id);
+                movie.setName(result.getString("movieName"));
+                movie.setCategory(result.getString("category"));
+                movie.setDirector(result.getString("directorName"));
+                movie.setSummary(result.getString("summary"));
+                movie.setMainActors(getActors(id));
+
+                movies.add(movie);
+            }
+            return movies;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
