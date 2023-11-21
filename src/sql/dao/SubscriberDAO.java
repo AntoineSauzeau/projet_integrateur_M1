@@ -1,11 +1,18 @@
 package sql.dao;
 
+import model.Client;
 import model.Subscriber;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 
 public class SubscriberDAO extends ClientDAO{
 
@@ -39,25 +46,33 @@ public class SubscriberDAO extends ClientDAO{
     @Override
     public Subscriber getById(int id){
 
-        Subscriber sub = (Subscriber) super.getById(id);
+        Client client = super.getById(id);
+        Subscriber sub = new Subscriber();
+        sub.setCreditCardNumber(client.getCreditCardNumber());
 
-        String sql = "SELECT * FROM Subscribers WHERE id = ?";
+        String sql = "SELECT * FROM Subscribers WHERE clientID = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
-            if(result.first()){
 
-                sub.setId(id);
-                sub.setName(result.getString("name"));
-                sub.setBalance(result.getFloat("balance"));
-                sub.setSubCardNumber(result.getInt("subCardId"));
-                sub.setBirthdate(result.getDate("birthdate"));
-                sub.setMail(result.getString("mail"));
-                sub.setAddress(result.getString("address"));
-
-                return sub;
+            SimpleDateFormat f = new SimpleDateFormat( "yyyy-MM-dd" );
+            Date birthdate = null;
+            try{
+                birthdate = f.parse(result.getString("birthdate"));
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
             }
+
+            sub.setId(id);
+            sub.setName(result.getString("name"));
+            sub.setBalance(result.getFloat("balance"));
+            sub.setSubCardNumber(result.getInt("subCardId"));
+            sub.setBirthdate(new java.sql.Date(birthdate.getTime()));
+            sub.setMail(result.getString("mail"));
+            sub.setAddress(result.getString("address"));
+
+            return sub;
         }
         catch (SQLException e) {
             e.printStackTrace();

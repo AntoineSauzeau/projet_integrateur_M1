@@ -25,10 +25,9 @@ public class ClientDAO {
 
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
-            if (result.first()) {
-                client = new Client();
-                client.setCreditCardNumber(result.getInt("creditCard"));
-            }
+
+            client = new Client();
+            client.setCreditCardNumber(result.getInt("creditCard"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -66,22 +66,23 @@ public class ConnectionPage extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*SubscriberDAO subscriberDAO = null;
+                SubscriberDAO subscriberDAO = null;
                 try {
                     subscriberDAO = new SubscriberDAO(DatabaseConnection.getConnection(false));
                 } catch (SQLException excep) {
                     excep.printStackTrace();
                 }
-                Subscriber subscriber = subscriberDAO.getById(0);*/
 
-                Application.setNewConnectedClient(new Subscriber());              //TODO Le but lorsque ça marchera sera de récupérer l'utilisateur depuis la base de données au lieu d'en créer un artificellement avec les champs nuls
+                Subscriber subscriber = (Subscriber) subscriberDAO.getById(1);
+
+                Application.setNewSubscriber(subscriber);
                 Application.getInterface().changePage(InterfacePage.MAIN);
             }
         });
         buttonNoSub.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Application.setNewConnectedClient(new NonSubscriber());
+                Application.setNewNonSubscriber(new NonSubscriber());
                 Application.getInterface().changePage(InterfacePage.MAIN);
             }
         });

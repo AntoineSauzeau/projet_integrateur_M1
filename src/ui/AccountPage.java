@@ -1,4 +1,7 @@
 package ui;
+import model.Application;
+import model.Subscriber;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -62,6 +65,8 @@ public class AccountPage extends JPanel{
         c.weightx = 0.20;
         c.gridheight = 3;
         centerPanel.add(blankRightPanel, c);
+
+        Update();
     }
 
     public void createFonts(){
@@ -190,5 +195,16 @@ public class AccountPage extends JPanel{
     JPanel createHistoryPanel(){
         JPanel p = new JPanel();
         return p;
+    }
+
+    public void Update(){
+        Subscriber sus = Application.getSubcriberConnected();
+        nameValueLabel.setText(sus.getName());
+        addressValueLabel.setText(sus.getAddress());
+        mailValueLabel.setText(sus.getMail());
+        birthdateValueLabel.setText(sus.getBirthdate().toString());
+        subCardValueLabel.setText(sus.getSubCardNumber().toString());
+        balanceValueLabel.setText(sus.getBalance().toString());
+        creditCardValueLabel.setText(sus.getCreditCardNumber().toString());
     }
 }

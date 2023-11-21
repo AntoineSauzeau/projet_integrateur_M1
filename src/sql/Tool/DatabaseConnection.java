@@ -2,6 +2,7 @@ package sql.Tool;
 
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -11,7 +12,7 @@ public class DatabaseConnection {
     private static final String PASSWORD_Runtime = "c976d43602";
 
     public static Connection getConnection(boolean mode) throws SQLException {
-        if (mode) {
+        /*if (mode) {
             return DriverManager.getConnection("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
         } else {
             try {
@@ -24,7 +25,8 @@ public class DatabaseConnection {
 
             // Retourner la connexion à la base de données Oracle
             return DriverManager.getConnection(URL_Runtime, USER_Runtime, PASSWORD_Runtime);
-        }
+        }*/
+        return DriverManager.getConnection("jdbc:sqlite:src/sql/database.db");
     }
 
 }

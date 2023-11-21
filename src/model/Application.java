@@ -3,15 +3,31 @@ package model;
 import ui.Interface;
 
 public class Application {
-    private static Client client;
+    private static Subscriber subscriber;
+    private static NonSubscriber nonSubscriber;
+    private static boolean isSubscriber;
     private static Interface ui;
 
-    public static Client getClientConnected(){
-        return client;
+    public static boolean clientIsSubscriber(){
+        return isSubscriber;
     }
 
-    public static void setNewConnectedClient(Client c){
-        client = c;
+    public static Subscriber getSubcriberConnected(){
+        return subscriber;
+    }
+
+    public static NonSubscriber getNonSubscriberConnected(){
+        return nonSubscriber;
+    }
+
+    public static void setNewSubscriber(Subscriber c){
+        subscriber = c;
+        isSubscriber = true;
+    }
+
+    public static void setNewNonSubscriber(NonSubscriber c){
+        nonSubscriber = c;
+        isSubscriber = false;
     }
 
     public static Interface getInterface(){

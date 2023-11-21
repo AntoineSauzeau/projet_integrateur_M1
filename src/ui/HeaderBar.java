@@ -66,7 +66,7 @@ public class HeaderBar extends JPanel {
         labelAccount.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                    if(Application.getClientConnected().isSubscriber())
+                    if(Application.clientIsSubscriber())
                         Application.getInterface().changePage(InterfacePage.ACCOUNT);
             }
         });
