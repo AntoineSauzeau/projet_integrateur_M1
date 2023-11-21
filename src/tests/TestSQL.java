@@ -1,7 +1,6 @@
 package tests;
 
 import model.Subscriber;
-import org.junit.Before;
 import sql.Tool.DatabaseConnection;
 import sql.Tool.Session;
 import sql.dao.SubscriberDAO;
@@ -17,6 +16,7 @@ import java.sql.Statement;
 
 public class TestSQL {
     public static void main(String[] args) throws SQLException {
+        setUp();
 
 
         // Créez une connexion à votre base de données (par exemple, MySQL)
@@ -39,8 +39,7 @@ public class TestSQL {
 
     }
 
-    @Before
-    public void setUp() throws SQLException {
+    public static void setUp() throws SQLException {
         // Créez un gestionnaire de transactions pour les tests
         Session session = new Session(true);
         try {
@@ -53,7 +52,7 @@ public class TestSQL {
             //statement.execute(createTableSQL);
 
 
-            BufferedReader reader = new BufferedReader(new FileReader("/src/sql/table.sql"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/sql/table.sql"));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
 
