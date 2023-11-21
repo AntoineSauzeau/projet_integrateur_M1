@@ -5,24 +5,34 @@ import sql.Tool.DatabaseConnection;
 import sql.Tool.Session;
 import sql.dao.SubscriberDAO;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 
 public class TestSQL {
-    public static void main(String[] args) throws SQLException {
+
+    static Connection conn;
+
+    static {
+        try {
+            conn = DatabaseConnection.getConnection(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public TestSQL() throws SQLException {
+    }
+
+    public static void main(String[] args) throws Exception {
         setUp();
+
 
 
         // Créez une connexion à votre base de données (par exemple, MySQL)
         Session session = new Session(true);
-        //DatabaseConnection dataConn = new DatabaseConnection();
-        Connection conn = DatabaseConnection.getConnection(false);
 
         // Créez un gestionnaire de transactions
 
@@ -44,15 +54,15 @@ public class TestSQL {
         Session session = new Session(true);
         try {
             session.open();
+            String sqlScript = loadSqlScript("src/sql/tables.sql");
             // Créez une déclaration SQL pour exécuter des requêtes SQL
             Statement statement = session.get().createStatement();
 
-            // Exécutez un script SQL pour créer Toutes les tables
-            //String createTableSQL = "CREATE TABLE Utilisateur (id INT PRIMARY KEY, nom VARCHAR(255), prenom VARCHAR(255))";
-            //statement.execute(createTableSQL);
+            statement.execute(sqlScript);
 
+            /*
+            BufferedReader reader = new BufferedReader(new FileReader("src/sql/tables.sql"));
 
-            BufferedReader reader = new BufferedReader(new FileReader("src/sql/table.sql"));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
 
@@ -65,8 +75,14 @@ public class TestSQL {
             statement.execute(createTableSQL);
 
             // Ajoutez des données initiales si nécessaire
-            // String insertDataSQL = "INSERT INTO Utilisateur (id, nom, prenom) VALUES (1, 'Smith', 'Joe')";
-            // statement.execute(insertDataSQL);
+            reader = new BufferedReader(new FileReader("src/sql/data.sql"));
+            stringBuilder = new StringBuilder();
+            String line2;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            String insertDataSQL = stringBuilder.toString();
+            statement.execute(insertDataSQL);*/
 
             // Fermez la connexion et la déclaration
             statement.close();
@@ -75,9 +91,26 @@ public class TestSQL {
             session.rollback();
             session.close();
             throw e;
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+
     }
+
+    private static String loadSqlScript(String filePath) throws Exception {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+        }
+
+        return stringBuilder.toString();
+    }
+
+
+
 }
