@@ -4,6 +4,8 @@ package ui;
 import model.Application;
 import model.NonSubscriber;
 import model.Subscriber;
+import sql.Tool.DatabaseConnection;
+import sql.dao.SubscriberDAO;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 // import static java.awt.event.MouseEvent.BUTTON1;
 
@@ -63,7 +66,15 @@ public class ConnectionPage extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Application.setNewConnectedClient(new Subscriber());
+                /*SubscriberDAO subscriberDAO = null;
+                try {
+                    subscriberDAO = new SubscriberDAO(DatabaseConnection.getConnection(false));
+                } catch (SQLException excep) {
+                    excep.printStackTrace();
+                }
+                Subscriber subscriber = subscriberDAO.getById(0);*/
+
+                Application.setNewConnectedClient(new Subscriber());              //TODO Le but lorsque ça marchera sera de récupérer l'utilisateur depuis la base de données au lieu d'en créer un artificellement avec les champs nuls
                 Application.getInterface().changePage(InterfacePage.MAIN);
             }
         });
