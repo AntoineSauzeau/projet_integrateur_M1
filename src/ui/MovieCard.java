@@ -7,11 +7,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ResourceBundle.Control;
+import Controler.Controler;
+import model.Movie;
 
 
 public class MovieCard extends JPanel {
+    Movie movie;
 
     public MovieCard(Movie movie){
+        this.movie = movie;
 
         setLayout(new BorderLayout());
 
@@ -44,7 +49,7 @@ public class MovieCard extends JPanel {
         JLabel category = new JLabel(movie.getCategory());
 
 
-        JLabel tout = new JLabel("<html>" + movie.getName() + "<br>"+ movie.getCategory() +"<br>"+ movie.getDirector() + "</html>",JLabel.LEFT);
+        JLabel tout = new JLabel("<html>" + movie.getName() +"<br>"+ movie.getDirector() + "<br><br>" + movie.getSummary() + "</html>",JLabel.LEFT);
 
         textPanel.add(title);
         textPanel.add(director);
@@ -59,6 +64,12 @@ public class MovieCard extends JPanel {
         center.add(rightPanel);
 
         add(center, BorderLayout.CENTER);
+        // Ajoute un listener sur un clic sur le panel
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Controler.getInstance().showMovie(movie);
+            }
+        });
     }
 
 }

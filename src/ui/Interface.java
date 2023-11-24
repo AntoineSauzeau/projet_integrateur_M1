@@ -1,6 +1,10 @@
 package ui;
 
 import javax.swing.*;
+
+import Controler.Controler;
+import model.Movie;
+
 import java.awt.*;
 
 public class Interface {
@@ -10,11 +14,13 @@ public class Interface {
 
     JFrame frame;
     InterfacePage page;
+    JPanel win;
 
 
     public Interface() {
 
         page = InterfacePage.MAIN;
+        Controler ctrl = new Controler(this);
 
         frame = new JFrame("AL2000");
         frame.setMinimumSize(new Dimension(INTERFACE_WIDTH, INTERFACE_HEIGHT));
@@ -29,14 +35,18 @@ public class Interface {
     public void changePage(InterfacePage newPage) {
         frame.getContentPane().removeAll();
 
+        win = null;
         if(newPage == InterfacePage.MAIN){
-            frame.add(new MainPage());
+            win = new MainPage();
+            frame.add(win);
         }
         else if(newPage == InterfacePage.CONNECTION){
-            frame.add(new ConnectionPage());
+            win = new ConnectionPage();
+            frame.add(win);
         }
         else if(newPage == InterfacePage.ACCOUNT){
-            frame.add(new AccountPage());
+            win = new AccountPage();
+            frame.add(win);
         }
 
         frame.revalidate();
@@ -45,5 +55,9 @@ public class Interface {
 
     public void show(){
         frame.setVisible(true);
+    }
+
+    public void showMovie(Movie movie) {
+        ((MainPage) win).showMovie(movie);
     }
 }

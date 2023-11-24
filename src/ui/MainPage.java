@@ -2,6 +2,7 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import model.Movie;
 
 
 //Page principale
@@ -38,6 +39,23 @@ public class MainPage extends JPanel {
         centerPanel.add(searchBar, BorderLayout.NORTH);
 
         centerPanel.add(new MoviePanel(), BorderLayout.CENTER);
+    }
+
+    void showMovie(Movie movie) {
+        this.remove(centerPanel);
+        centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.setBackground(Color.blue);
+        add(centerPanel, BorderLayout.CENTER);
+
+        searchBar = new SearchBar();
+        searchBar.setBackground(Color.yellow);
+        searchBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+        centerPanel.add(searchBar, BorderLayout.NORTH);
+
+        centerPanel.add(new MovieClicked(movie), BorderLayout.CENTER);
+        repaint();
+        revalidate();
     }
 
     /*void loadDefaultMenu(){
