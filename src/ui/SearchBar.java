@@ -1,5 +1,9 @@
 package ui;
 
+import model.Movie;
+import sql.Tool.Session;
+import sql.data.MovieService;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -11,6 +15,7 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
+import java.util.List;
 
 public class SearchBar extends JPanel {
 
@@ -31,18 +36,27 @@ public class SearchBar extends JPanel {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 System.out.println(tfSearch.getText());
+                System.out.println(getRelevantMovies(tfSearch.getText()));
+                //TODO : Update la page de films
+
                 System.out.println("Ajoute");
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
                 System.out.println(tfSearch.getText());
+                System.out.println(getRelevantMovies(tfSearch.getText()));
+                //TODO : Update la page de films
+
                 System.out.println("Supprime");
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
                 System.out.println(tfSearch.getText());
+                System.out.println(getRelevantMovies(tfSearch.getText()));
+                //TODO : Update la page de films
+
                 System.out.println("Change");
             }
         });
@@ -59,5 +73,15 @@ public class SearchBar extends JPanel {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Movie> getRelevantMovies(String title){
+
+        Session session = new Session(true);
+        MovieService movieService = new MovieService(session);
+        List<Movie> movies = movieService.getMovieByTitle(title);
+        session.close();
+
+        return movies;
     }
 }

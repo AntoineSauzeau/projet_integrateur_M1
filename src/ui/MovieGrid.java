@@ -25,6 +25,7 @@ public class MovieGrid extends MoviePage {
         Session session = new Session(true);
         MovieService movieService = new MovieService(session);
         List<Movie> movies = movieService.getMovieInRange(offset,max);
+        session.close();
 
         for (Movie movie: movies) {
             MovieCard movieCard = new MovieCard(movie);

@@ -29,9 +29,13 @@ public class Session {
         connection.setAutoCommit(true); // Réactivez l'autocommit
     }
 
-    public void close() throws SQLException {
+    public void close(){
         if (connection!=null) {
-            connection.close(); // Désactivez l'autocommit pour gérer manuellement la transaction
+            try {
+                connection.close(); // Désactivez l'autocommit pour gérer manuellement la transaction
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             connection=null;
         }
     }
