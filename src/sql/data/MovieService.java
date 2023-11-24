@@ -16,10 +16,6 @@ public class MovieService {
         this.session = session;
     }
 
-
-
-
-    // Méthode pour récupérer tous les utilisateurs
     public List<Movie> getMovieInRange(int offset, int max){
         try {
             session.open();
@@ -31,7 +27,19 @@ public class MovieService {
 
         } catch (SQLException e) {
         }
+        return null;
+    }
 
+    public List<Movie> getMovieByTitle(String title){
+        try {
+            session.open();
+            movieDAO = new MovieDAO(session.get());
+            List<Movie> movies = movieDAO.getByTitle(title);
+            session.close();
+            return movies;
+
+        } catch (SQLException e) {
+        }
         return null;
     }
 

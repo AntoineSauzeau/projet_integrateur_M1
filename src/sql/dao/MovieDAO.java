@@ -130,4 +130,33 @@ public class MovieDAO {
         }
         return null;
     }
+
+
+    public List<Movie> getByTitle(String title){
+        List<Movie> movies = new ArrayList<>();
+
+        String sql = "SELECT * FROM Movies WHERE movieName LIKE '%" + title + "%'";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet result = statement.executeQuery();
+
+            while(result.next()){
+                Movie movie = new Movie();
+
+                int id = result.getInt("movieID");
+                movie.setId(id);
+                movie.setName(result.getString("movieName"));
+                //movie.setCategory(result.getString("category"));
+                movie.setDirector(result.getString("directorName"));
+                movie.setSummary(result.getString("summary"));
+                movie.setMainActors(getActors(id));
+
+                movies.add(movie);
+            }
+            return movies;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
