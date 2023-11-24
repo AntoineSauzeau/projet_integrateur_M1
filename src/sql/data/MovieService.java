@@ -43,6 +43,19 @@ public class MovieService {
         return null;
     }
 
+    public List<Movie> getTopTenMovies(){
+        try {
+            session.open();
+            movieDAO = new MovieDAO(session.get());
+            List<Movie> movies = movieDAO.getTopTen();
+            session.close();
+            return movies;
+
+        } catch (SQLException e) {
+        }
+        return null;
+    }
+
 }
 
 

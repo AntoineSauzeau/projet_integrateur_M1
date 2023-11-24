@@ -37,6 +37,8 @@ public class SearchBar extends JPanel {
             public void insertUpdate(DocumentEvent e) {
                 System.out.println(tfSearch.getText());
                 System.out.println(getRelevantMovies(tfSearch.getText()));
+                //TODO : Update la page de films
+
                 System.out.println("Ajoute");
             }
 
@@ -44,6 +46,7 @@ public class SearchBar extends JPanel {
             public void removeUpdate(DocumentEvent e) {
                 System.out.println(tfSearch.getText());
                 System.out.println(getRelevantMovies(tfSearch.getText()));
+                //TODO : Update la page de films
 
                 System.out.println("Supprime");
             }
@@ -52,6 +55,8 @@ public class SearchBar extends JPanel {
             public void changedUpdate(DocumentEvent e) {
                 System.out.println(tfSearch.getText());
                 System.out.println(getRelevantMovies(tfSearch.getText()));
+                //TODO : Update la page de films
+
                 System.out.println("Change");
             }
         });
