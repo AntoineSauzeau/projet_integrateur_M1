@@ -37,7 +37,7 @@ public class TestSQL {
         // Créez un gestionnaire de transactions
 
         // Créez un service avec le DAO et le gestionnaire de transactions
-        SubscriberDAO subscriberService = new SubscriberDAO(conn);
+        SubscriberDAO subscriberService = new SubscriberDAO(session.get());
 
         // Exemple d'utilisation du service
         Subscriber newSubscriber = new Subscriber();

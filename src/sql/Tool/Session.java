@@ -14,7 +14,7 @@ public class Session {
 
     public void open() throws SQLException {
         if (connection==null) {
-            connection=DatabaseConnection.getConnection(mode);
+            connection=DatabaseConnection.getConnection(true);
             connection.setAutoCommit(false); // Désactivez l'autocommit pour gérer manuellement la transaction
         }
     }
