@@ -29,12 +29,20 @@ public class MovieCard extends JPanel {
         JPanel rightPanel = new JPanel(new BorderLayout());
         rightPanel.setBackground(Color.white);
 
-        //Image du film
         ImageIcon movieImageIcon;
+        String pathname = "Images/"+movie.getId()+".jpg";
+        System.out.println(movie.getId());
+
         try {
-            movieImageIcon = new ImageIcon(ImageIO.read(new File("assets/img/home.png")));
+            movieImageIcon = new ImageIcon(ImageIO.read(new File(pathname)));
+            //TODO ALLER chercher image du film
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
+            try {
+                movieImageIcon = new ImageIcon(ImageIO.read(new File("assets/img/home.png")));
+            }catch (IOException e2){
+                throw new RuntimeException(e2);
+            }
         }
 
         JLabel movieImage = new JLabel(movieImageIcon);
