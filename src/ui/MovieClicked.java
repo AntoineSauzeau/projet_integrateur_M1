@@ -18,12 +18,12 @@ public class MovieClicked extends JPanel {
 
         JButton bouton_louer_br = new JButton("Louer ce film en Blu-Ray");
         // Bouton en fond noir avec marqué "Louer" en blanc
-        bouton_louer_br.setBackground(java.awt.Color.BLACK);
+        //bouton_louer_br.setBackground(java.awt.Color.BLACK);
         bouton_louer_br.setForeground(java.awt.Color.BLACK);
         bouton_louer_br.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
 
         JButton bouton_louer_qr = new JButton("Louer ce film en version numérique");
-        bouton_louer_qr.setBackground(java.awt.Color.BLACK);
+        //bouton_louer_qr.setBackground(java.awt.Color.BLACK);
         bouton_louer_qr.setForeground(java.awt.Color.BLACK);
         bouton_louer_qr.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
 
