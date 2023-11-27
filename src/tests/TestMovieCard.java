@@ -2,6 +2,7 @@ package tests;
 
 import model.Movie;
 import model.PhysicalMovie;
+import ui.DisplayMovieCardType;
 import ui.Interface;
 import ui.InterfacePage;
 import ui.MovieCard;
@@ -13,7 +14,7 @@ public class TestMovieCard {
     static JFrame frame;
 
     public static void main(String[] args) {
-
+//TODO  régler taille image
         frame = new JFrame("MovieCard");
         frame.setMinimumSize(new Dimension(600, 600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,11 +24,11 @@ public class TestMovieCard {
         movie.setCategory("Animation");
         movie.setDirector("M.Mineau");
         movie.setSummary("BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla");
-
+        movie.setId(2);
         JPanel main = new JPanel();
         main.setLayout(new BorderLayout());
         main.setBackground(Color.RED);
-        main.add(new MovieCard(movie), BorderLayout.CENTER);
+        main.add(new MovieCard(movie, DisplayMovieCardType.Page), BorderLayout.CENTER);
 
         frame.add(main);
 

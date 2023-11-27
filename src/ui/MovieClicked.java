@@ -41,8 +41,7 @@ public class MovieClicked extends JPanel {
         buttonPanel.add(bouton_retour);
 
         this.add(buttonPanel, BorderLayout.SOUTH);
-        this.add(new MovieCard(movie), BorderLayout.CENTER);
-
+        this.add(new MovieCard(movie, DisplayMovieCardType.Page), BorderLayout.CENTER);
 
 
     }

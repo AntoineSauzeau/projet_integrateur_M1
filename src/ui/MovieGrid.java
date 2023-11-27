@@ -28,7 +28,7 @@ public class MovieGrid extends MoviePage {
         session.close();
 
         for (Movie movie: movies) {
-            MovieCard movieCard = new MovieCard(movie);
+            MovieCard movieCard = new MovieCard(movie, DisplayMovieCardType.Grid);
             movieCard.setPreferredSize(new Dimension(250, 250));
             add(movieCard);
         }
