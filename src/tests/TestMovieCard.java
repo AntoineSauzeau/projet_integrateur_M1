@@ -1,10 +1,7 @@
 package tests;
 
-import model.Movie;
 import model.PhysicalMovie;
 import ui.DisplayMovieCardType;
-import ui.Interface;
-import ui.InterfacePage;
 import ui.MovieCard;
 
 import javax.swing.*;

@@ -1,6 +1,5 @@
 package sql.dao;
 
-import model.Movie;
 import model.Rent;
 import sql.Tool.DatabaseConnection;
 
@@ -53,16 +52,25 @@ public class RentDAO {
 
     public int addRent(Rent r){
         String sql = "INSERT INTO Rents (withdrawalDate, paid, type, returnDate, clientID, movieID) VALUES (?, ?, ?, ?, ?, ?)";
-        
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            ResultSet result = statement.executeQuery();
+        // Insertion du rent dans la base de données
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setDate(1, new java.sql.Date(r.getRentDate().getTime()));
+            statement.setBoolean(2, false);
+            statement.setInt(3, 0);
+            statement.setDate(4, new Date(0));
+            statement.setInt(5, 2);
+            statement.setInt(6, r.getMovie().getId());
+            statement.executeUpdate();
+
             System.out.println("Rent added");
-            return 0;
-        }
-        catch (SQLException e) {
+            
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
         return -1;
     }
 

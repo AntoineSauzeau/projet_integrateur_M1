@@ -1,7 +1,6 @@
 package sql.dao;
 
 import model.Movie;
-import model.Subscriber;
 
 import java.sql.*;
 

@@ -23,7 +23,7 @@ public class Interface {
     public Interface() {
 
         page = InterfacePage.MAIN;
-        Controler ctrl = new Controler(this);
+        new Controler(this);
 
         frame = new JFrame("AL2000");
         frame.setMinimumSize(new Dimension(INTERFACE_WIDTH, INTERFACE_HEIGHT));
@@ -34,9 +34,6 @@ public class Interface {
         prec = null;
         CreatorThread creator = new CreatorThread("MAIN","MAIN_PAGE");
         creator.execute();
-
-
-        //Faire pop la fenetre au centre
     }
 
     public void changePage(InterfacePage newPage) {

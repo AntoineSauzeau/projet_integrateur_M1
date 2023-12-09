@@ -22,10 +22,6 @@ public class Subscriber extends Client {
         isSubscriber = true;
     }
 
-    public void addRent(Rent r){
-        //TODO
-        return;
-    }
 
     public void getInformation(){
         //TODO

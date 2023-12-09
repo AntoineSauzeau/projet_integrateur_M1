@@ -6,16 +6,12 @@ import java.util.List;
 
 
 import model.Movie;
-import model.PhysicalMovie;
 import sql.Tool.Session;
 import sql.data.MovieService;
 
 public class MovieSlide extends MoviePage{
 
     public MovieSlide(){
-
-        int offset = 0;
-        int max = 4;
 
         Session session = new Session(true);
         MovieService movieService = new MovieService(session);

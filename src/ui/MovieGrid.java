@@ -7,9 +7,7 @@ import java.util.List;
 
 
 import model.Movie;
-import model.PhysicalMovie;
 import sql.Tool.Session;
-import sql.dao.MovieDAO;
 import sql.data.MovieService;
 
 public class MovieGrid extends MoviePage {

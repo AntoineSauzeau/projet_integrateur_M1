@@ -10,6 +10,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import Controler.Controler;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
@@ -34,6 +36,7 @@ public class Confirmation extends JDialog {
         button.addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
                setVisible(false);
+               Controler.getInstance().goBack();
            }
         });
 

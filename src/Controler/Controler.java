@@ -1,12 +1,13 @@
 package Controler;
 import ui.Interface;
 import ui.InterfacePage;
-import model.Movie;
+
 import javax.swing.JPanel;
 
-import model.Rent;
-
+import sql.Tool.Session;
+import sql.data.RentService;
 import model.*;
+
 
 
 public class Controler {
@@ -51,7 +52,10 @@ public class Controler {
     public void rentMovie(Movie movie) {
         Subscriber s = Application.getSubcriberConnected();
         Rent r = new Rent(movie,s,0);
-        s.addRent(r);
+        Session session = new Session(true);
+        RentService rdao = new RentService(session);
+        rdao.addRent(r);
+
     }
 
 

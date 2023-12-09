@@ -8,9 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ResourceBundle.Control;
 import Controler.Controler;
-import model.Movie;
 
 
 public class MovieCard extends JPanel {

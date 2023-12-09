@@ -12,9 +12,6 @@ import javax.swing.event.DocumentListener;
 import java.io.File;
 import java.io.IOException;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.*;
 import java.util.List;
 
 public class SearchBar extends JPanel {
