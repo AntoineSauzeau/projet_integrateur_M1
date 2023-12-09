@@ -6,6 +6,8 @@ import model.Movie;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import Controler.Controler;
+
 public class MovieClicked extends JPanel {
 
     Movie movie;
@@ -22,15 +24,35 @@ public class MovieClicked extends JPanel {
         bouton_louer_br.setForeground(java.awt.Color.BLACK);
         bouton_louer_br.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
 
+        bouton_louer_br.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // TODO: Louer le film en Blu-Ray (appel BD, affichage message de confirmation)
+                Controler.rentMovie(movie);
+            }
+        });
+
         JButton bouton_louer_qr = new JButton("Louer ce film en version numérique");
         //bouton_louer_qr.setBackground(java.awt.Color.BLACK);
         bouton_louer_qr.setForeground(java.awt.Color.BLACK);
         bouton_louer_qr.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
 
+        bouton_louer_qr.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // TODO: Louer le film en version numérique (appel BD, affichage message de confirmation)
+            }
+        });
+
+
         JButton bouton_retour = new JButton(" ◀ ");
         // Bouton gris avec le texte en blanc
         bouton_retour.setForeground(java.awt.Color.GRAY);
         bouton_retour.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
+
+        bouton_retour.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Controler.getInstance().goBack();
+            }
+        });
 
 
 

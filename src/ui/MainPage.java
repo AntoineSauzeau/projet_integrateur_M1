@@ -21,7 +21,7 @@ public class MainPage extends JPanel {
         //setPreferredSize(new Dimension(200, 200));
 
         headerBar = new HeaderBar();
-        headerBar.setBackground(Color.red);
+        headerBar.setBackground(Color.gray);
         add(headerBar, BorderLayout.PAGE_START);
 
         createCenterPanel();

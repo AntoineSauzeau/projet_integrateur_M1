@@ -5,6 +5,8 @@ import javax.swing.*;
 import Controler.Controler;
 import model.Movie;
 
+import Controler.CreatorThread;
+
 import java.awt.*;
 
 public class Interface {
@@ -15,7 +17,8 @@ public class Interface {
     JFrame frame;
     InterfacePage page;
     JPanel win;
-
+    JPanel prec;
+    JPanel main;
 
     public Interface() {
 
@@ -28,6 +31,10 @@ public class Interface {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         changePage(InterfacePage.CONNECTION);
+        prec = null;
+        CreatorThread creator = new CreatorThread("MAIN","MAIN_PAGE");
+        creator.execute();
+
 
         //Faire pop la fenetre au centre
     }
@@ -37,7 +44,12 @@ public class Interface {
 
         win = null;
         if(newPage == InterfacePage.MAIN){
-            win = new MainPage();
+            if (main == null) {
+                win = new MainPage();
+            }
+            else {
+                win = main;
+            }
             frame.add(win);
         }
         else if(newPage == InterfacePage.CONNECTION){
@@ -48,16 +60,38 @@ public class Interface {
             win = new AccountPage();
             frame.add(win);
         }
-
+        prec = win;
         frame.revalidate();
         frame.repaint();
+    }
+
+    public void goBack(){
+        if(prec != null){
+            frame.getContentPane().removeAll();
+            frame.add(prec);
+            frame.revalidate();
+            frame.repaint();
+            win = prec;
+            prec = null;
+        }
     }
 
     public void show(){
         frame.setVisible(true);
     }
 
+    public void changePrec(JPanel prec){
+        this.prec = prec;
+    }
+
     public void showMovie(Movie movie) {
+        CreatorThread creator = new CreatorThread("PREC","MAIN_PAGE");
+        creator.execute();
+        //prec = new MainPage();
         ((MainPage) win).showMovie(movie);
+    }
+
+    public void chargeMain(JPanel panel){
+        this.main = panel;
     }
 }

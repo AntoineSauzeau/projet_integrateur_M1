@@ -2,6 +2,10 @@ package Controler;
 import ui.Interface;
 import ui.InterfacePage;
 import model.Movie;
+import javax.swing.JPanel;
+
+import model.*;
+
 
 public class Controler {
     Interface ui;
@@ -29,6 +33,23 @@ public class Controler {
     public void showMovie(Movie movie) {
         ui.showMovie(movie);    
     }
+
+    public void goBack() {
+        ui.goBack();
+    }
+
+    public void changePrec(JPanel panel) {
+        ui.changePrec(panel);
+    }
+
+    public void chargeMain(JPanel panel) {
+        ui.chargeMain(panel);
+    }
+
+    // public void rentMovie(Movie movie) {
+    //     Rent r = new Rent(movie);
+
+    // }
 
 
 }
