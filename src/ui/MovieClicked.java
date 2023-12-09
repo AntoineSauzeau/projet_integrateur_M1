@@ -1,6 +1,7 @@
 package ui;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import model.Movie;
 import java.awt.BorderLayout;
@@ -27,7 +28,9 @@ public class MovieClicked extends JPanel {
         bouton_louer_br.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 // TODO: Louer le film en Blu-Ray (appel BD, affichage message de confirmation)
-                Controler.rentMovie(movie);
+                Controler.getInstance().rentMovie(movie);
+                JDialog dialog = new Confirmation(null, "Confirmation de votre location", "Le film " +movie.getName() +" a bien été loué.\nBon visionnage !");
+                dialog.setVisible(true);
             }
         });
 

@@ -51,4 +51,19 @@ public class RentDAO {
         return rents;
     }
 
+    public int addRent(Rent r){
+        String sql = "INSERT INTO Rents (withdrawalDate, paid, type, returnDate, clientID, movieID) VALUES (?, ?, ?, ?, ?, ?)";
+        
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            ResultSet result = statement.executeQuery();
+            System.out.println("Rent added");
+            return 0;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
 }

@@ -15,10 +15,16 @@ public class Subscriber extends Client {
 
 
     private Float balance;
+
     //TODO faire des getter et setter avec des clones si on est propre
 
     public Subscriber(){
         isSubscriber = true;
+    }
+
+    public void addRent(Rent r){
+        //TODO
+        return;
     }
 
     public void getInformation(){

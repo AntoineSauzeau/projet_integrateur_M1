@@ -4,6 +4,8 @@ import ui.InterfacePage;
 import model.Movie;
 import javax.swing.JPanel;
 
+import model.Rent;
+
 import model.*;
 
 
@@ -46,10 +48,11 @@ public class Controler {
         ui.chargeMain(panel);
     }
 
-    // public void rentMovie(Movie movie) {
-    //     Rent r = new Rent(movie);
-
-    // }
+    public void rentMovie(Movie movie) {
+        Subscriber s = Application.getSubcriberConnected();
+        Rent r = new Rent(movie,s,0);
+        s.addRent(r);
+    }
 
 
 }

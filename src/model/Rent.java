@@ -8,14 +8,26 @@ public class Rent {
     private Date returnDate;
     private boolean paid;
     private double cost;
-    private int type;
+    private int type; // 0 = bluray, 1 = qrcode
     private Client client;
     private Movie movie;
     private Penalty penalty;
 
     public Rent(){
+        
+    }
 
-        }
+    public Rent(Movie m, Client c, int type){
+        this.movie = m;
+        this.client = c;
+        this.type = type;
+        rentDate = new Date();
+        paid = false;
+        cost = 0;
+        penalty = null;
+
+
+    }
 
     // SETTERS - GETTERS ================================================================================
 
