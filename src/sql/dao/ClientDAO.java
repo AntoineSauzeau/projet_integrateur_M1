@@ -1,9 +1,6 @@
 package sql.dao;
 
-import model.Client;
-import model.History;
-import model.Movie;
-import model.Rent;
+import model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -65,4 +62,31 @@ public class ClientDAO {
         }
         return null;
     }
+
+
+    public void changeSold(Subscriber s, Float change){
+        String sql = "UPDATE Subscribers SET balance = balance - ? WHERE clientID=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setFloat(1, change);
+            statement.setInt(2, s.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
+/*
+CREATE table Subscribers(
+    name varchar(50) not null,
+    clientID int not null,
+    address varchar(50) not null,
+    birthDate date not null,
+    mail varchar(50) not null,
+    balance float not null, -- Contrainte appli arrondi à 2 chiffres après la virgule
+    subCardID int not null,
+    primary key (clientID),
+    foreign key (clientID) references Clients(clientID) ON DELETE CASCADE
+);
+
+ */
