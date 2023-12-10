@@ -63,6 +63,7 @@ public class SubscriberDAO extends ClientDAO{
             }
 
             sub.setId(id);
+            sub.setIdSub(id);
             sub.setName(result.getString("name"));
             sub.setBalance(result.getFloat("balance"));
             sub.setSubCardNumber(result.getInt("subCardId"));

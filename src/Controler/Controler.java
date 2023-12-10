@@ -1,4 +1,6 @@
 package Controler;
+import sql.dao.ClientDAO;
+import sql.data.SubscriberService;
 import ui.Interface;
 import ui.InterfacePage;
 
@@ -59,7 +61,10 @@ public class Controler {
         Rent r = new Rent(movie,s,0);
         Session session = new Session(true);
         RentService rdao = new RentService(session);
+        SubscriberService sdao = new SubscriberService(session);
         rdao.addRent(r);
+        sdao.addChangeSold(s, 4F);
+
     }
 
     public void updateResearchedMovies() {
