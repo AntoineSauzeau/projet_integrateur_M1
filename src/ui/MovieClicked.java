@@ -46,7 +46,7 @@ public class MovieClicked extends JPanel {
         });
 
 
-        JButton bouton_retour = new JButton(" ◀ ");
+        JButton bouton_retour = new JButton(" ← ");
         // Bouton gris avec le texte en blanc
         bouton_retour.setForeground(java.awt.Color.GRAY);
         bouton_retour.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
