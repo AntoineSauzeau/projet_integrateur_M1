@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.List;
-import java.util.ResourceBundle.Control;
 
 public class SearchBar extends JPanel {
 

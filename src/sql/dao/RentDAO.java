@@ -45,7 +45,29 @@ public class RentDAO {
     public ArrayList<Rent> getClientRents(int clientId){
         ArrayList<Rent> rents = new ArrayList<Rent>();
 
-        String sql = "SELECT withdrawalDate, paid, type, returnDate FROM Rents WHERE clientID=?";
+        String sql = "SELECT movieID, withdrawalDate, paid, type, returnDate FROM Rents WHERE clientID=?";
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, clientId);
+            ResultSet result = statement.executeQuery();
+            while(result.next()){
+                Rent rent = new Rent();
+                // rent.setRentDate(new Date(result.getDate("withdrawalDate")));
+                // rent.setPaid(result.getBoolean("paid"));
+                // rent.setType(result.getInt("type"));
+                // rent.setReturnDate(result.getDate("returnDate"));
+
+                MovieDAO movieDAO = new MovieDAO(DatabaseConnection.getConnection(true));
+                rent.setMovie(movieDAO.getById(result.getInt("movieID")));
+
+                ClientDAO clientDAO = new ClientDAO(DatabaseConnection.getConnection(true));
+                rent.setClient(clientDAO.getById(clientId));
+
+                rents.add(rent);
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
 
         return rents;
     }

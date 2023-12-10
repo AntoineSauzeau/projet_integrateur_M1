@@ -6,15 +6,13 @@ import Controler.Controler;
 import model.Movie;
 
 import Controler.CreatorThread;
-import ui.InterfacePage;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Interface {
 
-    static final int INTERFACE_WIDTH = 800;
-    static final int INTERFACE_HEIGHT = 800;
+    static final int INTERFACE_WIDTH = 820;
+    static final int INTERFACE_HEIGHT = 820;
 
     JFrame frame;
     InterfacePage page;

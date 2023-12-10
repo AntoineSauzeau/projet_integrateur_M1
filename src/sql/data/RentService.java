@@ -5,6 +5,7 @@ import sql.dao.RentDAO;
 import model.Rent;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class RentService {
@@ -27,6 +28,20 @@ public class RentService {
             System.out.println("Erreur lors de l'ajout du rent");
         }
         
+    }
+
+    public ArrayList<Rent> getClientRents(int clientId){
+        //Utilise le rentDAO pour récupérer les rents d'un client
+        ArrayList<Rent> rents = new ArrayList<Rent>();
+        try {
+            session.open();
+            RentDAO = new RentDAO(session.get());
+            rents = RentDAO.getClientRents(clientId);
+            session.close();
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des rents");
+        }
+        return rents;
     }
 
 

@@ -1,9 +1,14 @@
 package ui;
 import model.Application;
 import model.Subscriber;
+import sql.Tool.Session;
+import sql.data.RentService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+
+import model.Rent;
 
 public class AccountPage extends JPanel{
     //Page avec toute les informations du compte
@@ -16,6 +21,7 @@ public class AccountPage extends JPanel{
     private JLabel subCardValueLabel;
     private JLabel balanceValueLabel;
     private JLabel creditCardValueLabel;
+    private ArrayList<JLabel> rentsValueLabel;
 
     private Font fontDialogBold_25;
     private Font fontDialog_20;
@@ -58,6 +64,13 @@ public class AccountPage extends JPanel{
         c.weightx = 0.6;
         c.gridheight = 1;
         centerPanel.add(paymentPanel, c);
+
+        JPanel historyPanel = createHistoryPanel();
+        c.gridx = 1;
+        c.gridy = 2;
+        c.weightx = 0.6;
+        c.gridheight = 1;
+        centerPanel.add(historyPanel, c);
 
         JPanel blankRightPanel = new JPanel();
         c.gridx = 2;
@@ -194,8 +207,47 @@ public class AccountPage extends JPanel{
 
     JPanel createHistoryPanel(){
         JPanel p = new JPanel();
+        p.setLayout(new GridBagLayout());
+
+        GridBagConstraints c = new GridBagConstraints();
+        c.weightx = 1;
+
+        JLabel titleLabel = new JLabel("Infos paiement");
+        titleLabel.setFont(fontDialogBold_25);
+        c.gridx = 0;
+        c.gridy = 0;
+        c.insets = new Insets(55, 0, 38, 0);
+        c.anchor = GridBagConstraints.CENTER;
+        p.add(titleLabel, c);
+
+        c.insets = new Insets(0, 0, 10, 20);
+        c.anchor = GridBagConstraints.LINE_START;
+
+        ArrayList<Rent> rents = new ArrayList<>();
+        rentsValueLabel = new ArrayList<JLabel>();
+        for(int i = 0; i < 5; i++){
+            if(i < rents.size()){
+                JLabel rentLabel = createFieldValueLabel(rents.get(i).getMovie().getName());
+                rentsValueLabel.add(rentLabel);
+            }
+            else{
+                JLabel rentLabel = createFieldValueLabel("Aucune location");
+                rentsValueLabel.add(rentLabel);
+            }
+        }
+        for (JLabel label : rentsValueLabel) {
+            JPanel rentPanel = new JPanel();
+            c.gridy++;
+            p.add(rentPanel, c);
+
+            rentPanel.add(label);
+        }
+
+
         return p;
     }
+
+    
 
     public void Update(){
         Subscriber sus = Application.getSubcriberConnected();
@@ -206,5 +258,16 @@ public class AccountPage extends JPanel{
         subCardValueLabel.setText(sus.getSubCardNumber().toString());
         balanceValueLabel.setText(sus.getBalance().toString());
         creditCardValueLabel.setText(sus.getCreditCardNumber().toString());
+        Session session = new Session(true);
+        RentService rdao = new RentService(session);
+        ArrayList<Rent> rents = rdao.getClientRents(1);
+        for(int i = 0; i < 5; i++){
+            if(i < rents.size()){
+                rentsValueLabel.get(i).setText(rents.get(i).getMovie().getName());
+            }
+            else{
+                rentsValueLabel.get(i).setText("");
+            }
+        }
     }
 }

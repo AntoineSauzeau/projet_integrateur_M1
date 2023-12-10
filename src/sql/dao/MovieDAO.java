@@ -29,7 +29,7 @@ public class MovieDAO {
 
                 movie.setId(id);
                 movie.setName(result.getString("movieName"));
-                movie.setCategory(result.getString("category"));
+                //movie.setCategory(result.getString("category"));
                 movie.setDirector(result.getString("directorName"));
                 movie.setSummary(result.getString("summary"));
                 movie.setMainActors(getActors(id));
