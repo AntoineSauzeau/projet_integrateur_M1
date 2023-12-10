@@ -27,6 +27,7 @@
  - src/tests/ : Plusieurs tests utilisés pour vérifier l'implémentation de certains éléments
  - src/ui/ : interface
 
+Le code sql création de table + triggers est src/sql/tables.sql
 
 Le programme se lance en exécutant src/Main
 
