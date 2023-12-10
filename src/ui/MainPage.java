@@ -108,4 +108,8 @@ public class MainPage extends JPanel {
         centerPanel.repaint();
     }
 
+    public void setText(String text) {
+        searchBar.setText(text);
+    }
+
 }

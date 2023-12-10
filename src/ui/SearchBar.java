@@ -43,7 +43,6 @@ public class SearchBar extends JPanel {
                     Controler.getInstance().setSearch(tfSearch.getText());
                 }
                 Controler.getInstance().updateResearchedMovies();
-                System.out.println("Ajoute");
             }
 
             @Override
@@ -51,8 +50,13 @@ public class SearchBar extends JPanel {
                 System.out.println(tfSearch.getText());
                 System.out.println(getRelevantMovies(tfSearch.getText()));
                 //TODO : Update la page de films
-
-                System.out.println("Supprime");
+                if (tfSearch.getText().equals("")){
+                    Controler.getInstance().changePage(InterfacePage.MAIN);
+                    Controler.getInstance().setSearch("");
+                }
+                else{
+                    Controler.getInstance().updateResearchedMovies();
+                }
             }
 
             @Override

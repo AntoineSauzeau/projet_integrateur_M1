@@ -117,6 +117,7 @@ public class Interface {
     }
 
     public void setSearch(String text) {
-        ((ResearchPage) win).setText(text);
+        try{((ResearchPage) win).setText(text);}
+        catch(Exception e){((MainPage) win).setText(text);}
     }
 }

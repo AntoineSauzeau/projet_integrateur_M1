@@ -62,10 +62,6 @@ public class Controler {
         rdao.addRent(r);
     }
 
-    public void showResearchedMovies(JPanel movies) {
-        ui.showResearchedMovies(movies);
-    }
-
     public void updateResearchedMovies() {
         ui.updateResearchedMovies();
     }
