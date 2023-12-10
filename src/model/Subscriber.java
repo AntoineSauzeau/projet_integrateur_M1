@@ -93,11 +93,11 @@ public class Subscriber extends Client {
         this.birthdate = birthdate;
     }
 
-    public Integer getId() {
+    public Integer getIdSub() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setIdSub(Integer id) {
         this.id = id;
     }
 
