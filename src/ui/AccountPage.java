@@ -212,7 +212,7 @@ public class AccountPage extends JPanel{
         GridBagConstraints c = new GridBagConstraints();
         c.weightx = 1;
 
-        JLabel titleLabel = new JLabel("Infos paiement");
+        JLabel titleLabel = new JLabel("Vos 3 dernières locations");
         titleLabel.setFont(fontDialogBold_25);
         c.gridx = 0;
         c.gridy = 0;
@@ -225,7 +225,7 @@ public class AccountPage extends JPanel{
 
         ArrayList<Rent> rents = new ArrayList<>();
         rentsValueLabel = new ArrayList<JLabel>();
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 3; i++){
             if(i < rents.size()){
                 JLabel rentLabel = createFieldValueLabel(rents.get(i).getMovie().getName());
                 rentsValueLabel.add(rentLabel);
@@ -240,7 +240,7 @@ public class AccountPage extends JPanel{
             c.gridy++;
             p.add(rentPanel, c);
 
-            rentPanel.add(label);
+            rentPanel.add(label,CENTER_ALIGNMENT);
         }
 
 
@@ -261,9 +261,11 @@ public class AccountPage extends JPanel{
         Session session = new Session(true);
         RentService rdao = new RentService(session);
         ArrayList<Rent> rents = rdao.getClientRents(1);
-        for(int i = 0; i < 5; i++){
+        if (rents.size() > 3) rents = new ArrayList<Rent>(rents.subList(Math.max(rents.size() - 3, 0), rents.size()));
+
+        for(int i = 0; i < 3; i++){
             if(i < rents.size()){
-                rentsValueLabel.get(i).setText(rents.get(i).getMovie().getName());
+                rentsValueLabel.get(2-i).setText(rents.get(i).getMovie().getName());
             }
             else{
                 rentsValueLabel.get(i).setText("");
