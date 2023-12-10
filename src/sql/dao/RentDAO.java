@@ -81,7 +81,7 @@ public class RentDAO {
             statement.setBoolean(2, false);
             statement.setInt(3, 0);
             statement.setDate(4, new Date(0));
-            statement.setInt(5, 2);
+            statement.setInt(5, r.getClient().getId());
             statement.setInt(6, r.getMovie().getId());
             statement.executeUpdate();
 
