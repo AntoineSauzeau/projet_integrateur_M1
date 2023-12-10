@@ -21,12 +21,13 @@
  - Images/ : contient tout les affiches de film
  - src/ : Code source
  - src/Controler : exécute les actions 
- - src/listener : (JE SAIS PAS CE QUE C'EST, UNE INTERFACE VIDE ?)
+ - src/listener : interface pour un listener
  - src/model/ : noyau fonctionnel
  - src/sql/ : gestion de la base de données
  - src/tests/ : Plusieurs tests utilisés pour vérifier l'implémentation de certains éléments
  - src/ui/ : interface
 
+Le code sql création de table + triggers est src/sql/tables.sql
 
 Le programme se lance en exécutant src/Main
 
