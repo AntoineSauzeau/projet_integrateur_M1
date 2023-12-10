@@ -70,6 +70,10 @@ public class ClientDAO {
             statement.setFloat(1, change);
             statement.setInt(2, s.getId());
             statement.executeUpdate();
+            connection.commit();
+
+            System.out.println("Balance updated");
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
