@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import Controler.Controler;
+import model.Application;
 
 public class MovieClicked extends JPanel {
 
@@ -29,7 +30,9 @@ public class MovieClicked extends JPanel {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 // TODO: Louer le film en Blu-Ray (appel BD, affichage message de confirmation)
                 Controler.getInstance().rentMovie(movie);
-                JDialog dialog = new Confirmation(null, "Confirmation de votre location", "Le film " +movie.getName() +" a bien été loué.\nBon visionnage !");
+                Float solde = Application.getSubcriberConnected().getBalance();
+                Application.getSubcriberConnected().setBalance(solde - 4);
+                JDialog dialog = new Confirmation(null, "Confirmation de votre location", "Le film " +movie.getName() +" a bien été loué.\nBon visionnage !\n\nVotre nouveau solde est de " +Application.getSubcriberConnected().getBalance() +"€.");
                 dialog.setVisible(true);
             }
         });
