@@ -29,10 +29,20 @@ public class MovieClicked extends JPanel {
         bouton_louer_br.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 // TODO: Louer le film en Blu-Ray (appel BD, affichage message de confirmation)
+                String messageDialogConfirmation = "Le film " +movie.getName() +" a bien été loué.\nBon visionnage !";
+                if(Application.clientIsSubscriber()){
+                    Float solde = Application.getSubcriberConnected().getBalance();
+                    if(solde-4 < 0) {
+                        JDialog dialog = new Confirmation(null, "Echec de la location", "Solde insuffisant. Veuillez recharger votre compte");
+                        dialog.setVisible(true);
+                        return;
+                    }
+                    Application.getSubcriberConnected().setBalance(solde - 4);
+                    messageDialogConfirmation += "\n\nVotre nouveau solde est de " +Application.getSubcriberConnected().getBalance() +"€.";
+                }
+
                 Controler.getInstance().rentMovie(movie);
-                Float solde = Application.getSubcriberConnected().getBalance();
-                Application.getSubcriberConnected().setBalance(solde - 4);
-                JDialog dialog = new Confirmation(null, "Confirmation de votre location", "Le film " +movie.getName() +" a bien été loué.\nBon visionnage !\n\nVotre nouveau solde est de " +Application.getSubcriberConnected().getBalance() +"€.");
+                JDialog dialog = new Confirmation(null, "Confirmation de votre location", messageDialogConfirmation);
                 dialog.setVisible(true);
             }
         });
