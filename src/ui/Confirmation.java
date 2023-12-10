@@ -9,6 +9,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowAdapter;
+
 
 import Controler.Controler;
 
@@ -35,13 +38,25 @@ public class Confirmation extends JDialog {
         contentPane.add(button, BorderLayout.SOUTH);
         button.addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
-               setVisible(false);
-               Controler.getInstance().goBack();
+               fonctionClose();
            }
         });
 
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                fonctionClose();
+            }
+        });
+
+
         setPreferredSize(new Dimension(300, 150));
         pack();
+    }
+
+    public void fonctionClose() {
+        setVisible(false);
+        Controler.getInstance().goBack();
     }
 
 

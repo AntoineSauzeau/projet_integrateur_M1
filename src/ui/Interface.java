@@ -89,8 +89,10 @@ public class Interface {
     }
 
     public void showMovie(Movie movie) {
-        CreatorThread creator = new CreatorThread("PREC","MAIN_PAGE");
+        CreatorThread creator = new CreatorThread("MAIN","MAIN_PAGE");
         creator.execute();
+        CreatorThread creator2 = new CreatorThread("PREC","MAIN_PAGE");
+        creator2.execute();
         switch (Controler.getInstance().getPage()) {
             case MAIN:
                 ((MainPage) win).showMovie(movie);
