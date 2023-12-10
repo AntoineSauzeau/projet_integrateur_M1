@@ -86,10 +86,10 @@ public class TestSQL {
 
             // Fermez la connexion et la déclaration
             statement.close();
-            session.close();
+            //session.close();
         } catch (SQLException e) {
             session.rollback();
-            session.close();
+            //session.close();
             throw e;
         } catch (Exception e) {
             throw new RuntimeException(e);

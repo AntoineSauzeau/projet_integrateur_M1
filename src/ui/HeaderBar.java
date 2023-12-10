@@ -52,7 +52,7 @@ public class HeaderBar extends JPanel {
         labelHome.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Home icon clicked!");
+                System.out.println("Affiche Page d'accueil");
                 Application.getInterface().changePage(InterfacePage.MAIN);
             }
         });
@@ -60,7 +60,7 @@ public class HeaderBar extends JPanel {
         labelExit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Exit icon clicked!");
+                System.out.println("Appui sur Bouton Quitter");
                 Application.getInterface().changePage(InterfacePage.CONNECTION);
             }
         });
@@ -70,6 +70,10 @@ public class HeaderBar extends JPanel {
             public void mouseClicked(MouseEvent e) {
                     if(Application.clientIsSubscriber())
                         Application.getInterface().changePage(InterfacePage.ACCOUNT);
+                    else {
+                        Confirmation c = new Confirmation(null,"Pas de compte", "Vous n'avez pas de compte car vous n'êtes pas abonné");
+                        c.setVisible(true);
+                    }
             }
         });
     }

@@ -22,7 +22,7 @@ public class MovieService {
 
             movieDAO = new MovieDAO(session.get());
             List<Movie> movies = movieDAO.getAll(offset,max);
-            session.close();
+            //session.close();
             return movies;
 
         } catch (SQLException e) {
@@ -35,7 +35,7 @@ public class MovieService {
             session.open();
             movieDAO = new MovieDAO(session.get());
             List<Movie> movies = movieDAO.getByTitle(title);
-            session.close();
+            //session.close();
             return movies;
 
         } catch (SQLException e) {
@@ -48,7 +48,7 @@ public class MovieService {
             session.open();
             movieDAO = new MovieDAO(session.get());
             List<Movie> movies = movieDAO.getTopTen();
-            session.close();
+            //session.close();
             return movies;
 
         } catch (SQLException e) {

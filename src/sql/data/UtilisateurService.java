@@ -25,10 +25,10 @@ public class UtilisateurService {
             UtilisateurDao utilisateurDao = new UtilisateurDao(session.get());
             utilisateurDao.create(utilisateur);
             session.commit();
-            session.close();
+            //session.close();
         } catch (SQLException e) {
             session.rollback();
-            session.close();
+            //session.close();
             throw e;
         }
     }
@@ -40,10 +40,10 @@ public class UtilisateurService {
             utilisateurDao = new UtilisateurDao(session.get());
             Utilisateur utilisateur=utilisateurDao.getById(id);;
             // A complérer
-            session.close();
+            //session.close();
             return utilisateur;
         } catch (SQLException e) {
-            session.close();
+            //session.close();
             throw e;
         }
 
@@ -56,10 +56,10 @@ public class UtilisateurService {
             List<Utilisateur> utilisateurs=null;;
             utilisateurDao = new UtilisateurDao(session.get());
             utilisateurs = utilisateurDao.getAll();
-            session.close();
+            //session.close();
             return utilisateurs;
         } catch (SQLException e) {
-            session.close();
+            //session.close();
             throw e;
         }
 
@@ -72,10 +72,10 @@ public class UtilisateurService {
             utilisateurDao = new UtilisateurDao(session.get());
             utilisateurDao.update(utilisateur);
             session.commit();
-            session.close();
+            //session.close();
             return;
         } catch (SQLException e) {
-            session.close();
+            //session.close();
             throw e;
         }
     }
@@ -87,10 +87,10 @@ public class UtilisateurService {
             utilisateurDao = new UtilisateurDao(session.get());
             utilisateurDao.delete(id);
             session.commit();
-            session.close();
+            //session.close();
             return;
         } catch (SQLException e) {
-            session.close();
+            //session.close();
             throw e;
         }
     }

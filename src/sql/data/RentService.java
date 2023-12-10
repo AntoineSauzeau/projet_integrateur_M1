@@ -23,7 +23,7 @@ public class RentService {
             session.open();
             RentDAO = new RentDAO(session.get());
             RentDAO.addRent(r);
-            session.close();
+            //session.close();
         } catch (SQLException e) {
             System.out.println("Erreur lors de l'ajout du rent");
         }
@@ -37,7 +37,7 @@ public class RentService {
             session.open();
             RentDAO = new RentDAO(session.get());
             rents = RentDAO.getClientRents(clientId);
-            session.close();
+            //session.close();
         } catch (SQLException e) {
             System.out.println("Erreur lors de la récupération des rents");
         }

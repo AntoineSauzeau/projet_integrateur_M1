@@ -25,15 +25,9 @@ public class ConnexionSQLite {
 
             System.out.println("Connexion à la base de données SQLite établie avec succès.");
 
-            MovieDAO movieDAO = new MovieDAO(connexion);
-            System.out.println(movieDAO.getAll(0, 10));
-
-            // Vous pouvez maintenant exécuter des requêtes sur la base de données...
-
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
-            // Assurez-vous de fermer la connexion dans le bloc finally pour éviter les fuites de ressources
             try {
                 if (connexion != null && !connexion.isClosed()) {
                     connexion.close();

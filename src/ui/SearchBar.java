@@ -34,9 +34,6 @@ public class SearchBar extends JPanel {
         tfSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                System.out.println(tfSearch.getText());
-                System.out.println(getRelevantMovies(tfSearch.getText()));
-                //TODO : Update la page de films
                 if (Controler.getInstance().getPage() != InterfacePage.RESEARCH){
                     Controler.getInstance().changePage(InterfacePage.RESEARCH);
                     Controler.getInstance().setSearch(tfSearch.getText());
@@ -46,9 +43,6 @@ public class SearchBar extends JPanel {
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                System.out.println(tfSearch.getText());
-                System.out.println(getRelevantMovies(tfSearch.getText()));
-                //TODO : Update la page de films
                 if (tfSearch.getText().equals("")){
                     Controler.getInstance().changePage(InterfacePage.MAIN);
                     Controler.getInstance().setSearch("");
@@ -60,11 +54,6 @@ public class SearchBar extends JPanel {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                System.out.println(tfSearch.getText());
-                System.out.println(getRelevantMovies(tfSearch.getText()));
-                //TODO : Update la page de films
-
-                System.out.println("Change");
             }
         });
 
@@ -95,7 +84,7 @@ public class SearchBar extends JPanel {
         Session session = new Session(true);
         MovieService movieService = new MovieService(session);
         List<Movie> movies = movieService.getMovieByTitle(title);
-        session.close();
+        //session.close();
 
         return movies;
     }

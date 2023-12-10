@@ -17,7 +17,7 @@ public class MovieSlide extends MoviePage{
         MovieService movieService = new MovieService(session);
         //TODO : Chercher movies à la une
         List<Movie> movies = movieService.getTopTenMovies();
-        session.close();
+        //session.close();
 
         for (Movie movie: movies) {
             MovieCard movieCard = new MovieCard(movie, DisplayMovieCardType.Slide);

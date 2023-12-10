@@ -101,7 +101,7 @@ public class ResearchPage extends JPanel {
         Session session = new Session(true);
         MovieService movieService = new MovieService(session);
         List<Movie> movies = movieService.getMovieByTitle(title);
-        session.close();
+        //session.close();
 
         return movies;
     }

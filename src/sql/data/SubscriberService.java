@@ -25,7 +25,7 @@ public class SubscriberService {
             session.open();
             clientDAO = new ClientDAO(session.get());
             clientDAO.changeSold(s, change);
-            session.close();
+            //session.close();
         } catch (SQLException e) {
             System.out.println("Erreur lors de l'ajout du changement de solde dans la bd");
         }
