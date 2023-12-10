@@ -47,7 +47,7 @@ public class MainPage extends JPanel {
         add(centerPanel, BorderLayout.CENTER);
 
         searchBar = new SearchBar();
-        searchBar.setBackground(Color.yellow);
+        searchBar.setBackground(Color.gray);
         searchBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         centerPanel.add(searchBar, BorderLayout.NORTH);
 
@@ -62,7 +62,7 @@ public class MainPage extends JPanel {
         add(centerPanel, BorderLayout.CENTER);
 
         searchBar = new SearchBar();
-        searchBar.setBackground(Color.yellow);
+        searchBar.setBackground(Color.gray);
         searchBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         centerPanel.add(searchBar, BorderLayout.NORTH);
 
@@ -83,7 +83,7 @@ public class MainPage extends JPanel {
         centerPanel.setBackground(Color.blue);
 
         searchBar = new SearchBar();
-        searchBar.setBackground(Color.yellow);
+        searchBar.setBackground(Color.gray);
         searchBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         centerPanel.add(searchBar, BorderLayout.NORTH);
 

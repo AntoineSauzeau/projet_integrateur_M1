@@ -32,11 +32,13 @@ public class HeaderBar extends JPanel {
 
         JPanel panelLeftIcons = new JPanel();
         panelLeftIcons.setLayout(new BoxLayout(panelLeftIcons, BoxLayout.X_AXIS));
+        panelLeftIcons.setBackground(Color.gray);
         panelLeftIcons.add(labelHome);
         panelLeftIcons.add(labelExit);
 
         JPanel panelRightIcons = new JPanel();
         panelRightIcons.setLayout(new BoxLayout(panelRightIcons, BoxLayout.X_AXIS));
+        panelRightIcons.setBackground(Color.gray);
         panelRightIcons.add(labelAccount);
 
         setLayout(new BorderLayout());
