@@ -34,5 +34,19 @@ public class MovieGrid extends MoviePage {
         setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
     }
 
+    public MovieGrid(List<Movie> movies){
+
+        GridLayout grid = new GridLayout(0, 2, 15, 15);
+        setLayout(grid);
+
+        for (Movie movie: movies) {
+            MovieCard movieCard = new MovieCard(movie, DisplayMovieCardType.Grid);
+            movieCard.setPreferredSize(new Dimension(250, 250));
+            add(movieCard);
+        }
+
+        setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+    }
+
     
 }

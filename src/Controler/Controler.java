@@ -2,6 +2,7 @@ package Controler;
 import ui.Interface;
 import ui.InterfacePage;
 
+
 import javax.swing.JPanel;
 
 import sql.Tool.Session;
@@ -14,6 +15,7 @@ public class Controler {
     Interface ui;
     //Singleton
     private static Controler instance = null;
+    InterfacePage page;
 
     public static Controler getInstance() {
         if (instance == null) {
@@ -27,10 +29,12 @@ public class Controler {
     public Controler(Interface ui) {
         this.ui = ui;
         instance = this;
+        page = InterfacePage.MAIN;
     }
 
     public void changePage(InterfacePage newPage) {
         ui.changePage(newPage);
+        page = newPage;
     }
 
     public void showMovie(Movie movie) {
@@ -38,6 +42,7 @@ public class Controler {
     }
 
     public void goBack() {
+        page = InterfacePage.MAIN;
         ui.goBack();
     }
 
@@ -55,7 +60,22 @@ public class Controler {
         Session session = new Session(true);
         RentService rdao = new RentService(session);
         rdao.addRent(r);
+    }
 
+    public void showResearchedMovies(JPanel movies) {
+        ui.showResearchedMovies(movies);
+    }
+
+    public void updateResearchedMovies() {
+        ui.updateResearchedMovies();
+    }
+
+    public void setSearch(String text) {
+        ui.setSearch(text);
+    }
+
+    public InterfacePage getPage() {
+        return page;
     }
 
 

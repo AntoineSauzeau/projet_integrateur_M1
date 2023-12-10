@@ -9,10 +9,13 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import Controler.Controler;
+
 import java.io.File;
 import java.io.IOException;
 
 import java.util.List;
+import java.util.ResourceBundle.Control;
 
 public class SearchBar extends JPanel {
 
@@ -35,7 +38,11 @@ public class SearchBar extends JPanel {
                 System.out.println(tfSearch.getText());
                 System.out.println(getRelevantMovies(tfSearch.getText()));
                 //TODO : Update la page de films
-
+                if (Controler.getInstance().getPage() != InterfacePage.RESEARCH){
+                    Controler.getInstance().changePage(InterfacePage.RESEARCH);
+                    Controler.getInstance().setSearch(tfSearch.getText());
+                }
+                Controler.getInstance().updateResearchedMovies();
                 System.out.println("Ajoute");
             }
 
@@ -70,6 +77,14 @@ public class SearchBar extends JPanel {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+
+    public void setText(String text){
+        tfSearch.setText(text);
+    }
+
+    public String getText(){
+        return tfSearch.getText();
     }
 
     public List<Movie> getRelevantMovies(String title){
