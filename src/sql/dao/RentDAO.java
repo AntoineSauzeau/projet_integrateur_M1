@@ -63,6 +63,8 @@ public class RentDAO {
             statement.setInt(6, r.getMovie().getId());
             statement.executeUpdate();
 
+            connection.commit();
+
             System.out.println("Rent added");
             
 
